@@ -1,91 +1,36 @@
+const menuToggle = document.querySelector('.menu-toggle');
+const siteNav = document.querySelector('.site-nav');
+const navLinks = document.querySelectorAll('.site-nav a');
+const currentYear = document.getElementById('current-year');
+const revealItems = document.querySelectorAll('.reveal');
 
-(function ($) {
-    var s,
-        spanizeLetters = {
-            settings: {
-                letters: $(".subTitle")
-            },
-            init: function () {
-                s = this.settings;
-                this.bindEvents();
-            },
-            bindEvents: function () {
-                s.letters.html(function (i, el) {
-                    //spanizeLetters.joinChars();
-                    var spanizer = $.trim(el).split("");
-                    return "<span>" + spanizer.join("</span><span>") + "</span>";
-                });
-            }
-        };
-    spanizeLetters.init();
-})(jQuery);
-
-
-$("input[name*='toggle-1']").change(function (e) {
-    navgation(e.target.attributes[2].value)
-
-})
-
-function navgation(valor) {
-    $("#" + valor).prop('checked', true);
-
-    $("#main").css("display", "none");
-    $("#over").css("display", "none");
-    $("#projects").css("display", "none");
-    $("#contact").css("display", "none");
-    $("#loading").css("display", "flex");
-
-    if (valor == "toggle-1") {
-        $("#main").css("display", "flex");
-    } else if (valor == "toggle-2") {
-        $("#over").css("display", "flex");
-    } else if (valor == "toggle-3") {
-        $("#projects").css("display", "flex");
-    } else if (valor == "toggle-4") {
-        $("#contact").css("display", "flex");
-    }
-    setTimeout(() => {
-        $("#loading").css("display", "none");
-    }, 500);
+if (currentYear) {
+  currentYear.textContent = new Date().getFullYear();
 }
 
-let mobileOn = false;
-window.onresize = function () {
-    if (window.innerWidth >= '600') {
-        $(".navButton").css({
-            "display": "flex"
-        })
-        mobileOn = false;
-    } else {
-        $(".navButton").css({
-            "display": "none"
-        })
+if (menuToggle && siteNav) {
+  menuToggle.addEventListener('click', () => {
+    const isOpen = siteNav.classList.toggle('is-open');
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+  });
 
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      siteNav.classList.remove('is-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
     }
-};
-$(".navLogo").on('mouseup', function () {
-    if (window.innerWidth <= '600') {
-        if (mobileOn == false) {
-            $(".navButton").css({
-                "display": "flex"
-            })
-            mobileOn = true;
-        } else {
-            $(".navButton").css({
-                "display": "none"
-            })
-            mobileOn = false;
-        }
-    } else {
-        navgation('toggle-1');
-    }
+  });
+}, {
+  threshold: 0.14,
 });
 
-$(".navButton").on('mouseup', function () {
-    if (window.innerWidth <= '600') {
-        $(".navButton").css({
-            "display": "none"
-        })
-        mobileOn = false;
-    }
-});
+revealItems.forEach((item) => observer.observe(item));
