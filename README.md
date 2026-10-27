@@ -45,7 +45,7 @@ npm run screenshots
 npm run screenshots:report
 ```
 
-A suíte inicia um servidor local, valida cinco resoluções (360, 390, 768, 1024 e 1440 px), navegação mobile, filtros dos projetos, links, metadados e ausência de overflow horizontal. O workflow **Portfolio QA + capturas visuais** do GitHub Actions executa testes e cria um pacote de imagens em pushes e pull requests para `main`. Toda segunda-feira, ele também pode registrar a versão publicada no GitHub Pages.
+A suíte inicia um servidor local, valida cinco resoluções (360, 390, 768, 1024 e 1440 px), navegação mobile, filtros dos projetos, links, metadados e ausência de overflow horizontal. O workflow **Portfolio QA + capturas visuais** do GitHub Actions executa testes e cria um pacote de imagens em pushes e pull requests para `main`. Na auditoria de 27/10/2026, as 37 capturas reais em cinco resoluções passaram sem alertas de layout ou JavaScript. Toda segunda-feira, ele também pode registrar a versão publicada no GitHub Pages.
 
 Após a execução, baixe o artefato **portfolio-capturas-visuais** em **Actions** e abra seu `index.html` para comparar as capturas. Veja o [guia das capturas](docs/CAPTURAS_VISUAIS.md) e o [roadmap](docs/ROADMAP.md) para acompanhar as validações.
 
