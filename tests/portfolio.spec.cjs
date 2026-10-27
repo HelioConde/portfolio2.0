@@ -80,6 +80,7 @@ test('published project screenshots are real assets and load correctly', async (
   await page.goto('/');
   const assets = [
     'base-studio-pizzas.jpg',
+    'playwitheliteitem.jpg',
     'ofertamatica.jpg',
     'redream.jpg',
     'baby-on-screen.jpg',
