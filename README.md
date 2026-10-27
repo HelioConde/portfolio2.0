@@ -41,11 +41,13 @@ Acesse `http://localhost:8000`. Também é possível inspecionar o HTML e CSS di
 npm install
 npx playwright install chromium
 npm run test:e2e
+npm run screenshots
+npm run screenshots:report
 ```
 
-A suíte inicia um servidor local, valida cinco resoluções (360, 390, 768, 1024 e 1440 px), navegação mobile, filtros dos projetos, links, metadados e ausência de overflow horizontal. O workflow `Portfolio QA` do GitHub Actions executa a suíte em pushes e pull requests para `main`.
+A suíte inicia um servidor local, valida cinco resoluções (360, 390, 768, 1024 e 1440 px), navegação mobile, filtros dos projetos, links, metadados e ausência de overflow horizontal. O workflow **Portfolio QA + capturas visuais** do GitHub Actions executa testes e cria um pacote de imagens em pushes e pull requests para `main`. Toda segunda-feira, ele também pode registrar a versão publicada no GitHub Pages.
 
-> O workflow foi adicionado; os resultados precisam ser conferidos na aba Actions. Consulte [o roadmap](docs/ROADMAP.md) para acompanhar etapas concluídas e validações pendentes.
+Após a execução, baixe o artefato **portfolio-capturas-visuais** em **Actions** e abra seu `index.html` para comparar as capturas. Veja o [guia das capturas](docs/CAPTURAS_VISUAIS.md) e o [roadmap](docs/ROADMAP.md) para acompanhar as validações.
 
 ## Estrutura
 
@@ -54,7 +56,8 @@ index.html    Página de entrada e seções
 css/          Estilos, layout e responsividade
 js/           Interações
 img/          Imagens e apresentações dos projetos
-tests/        Testes automatizados Playwright
+tests/        Testes e capturas automatizadas Playwright
+scripts/      Gerador da galeria e métricas
 docs/         Design system e roadmap
 .github/      Workflow de QA
 icon/         Ícones e favicon
