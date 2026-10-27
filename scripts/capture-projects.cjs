@@ -7,6 +7,7 @@ const OUTPUT = path.join(ROOT, 'img', 'projects');
 const REPORT = path.join(ROOT, 'visual-reports', 'project-sites');
 const PROJECTS = [
   { slug:'base-studio-pizzas', name:'Base Studio Pizzas', url:'https://helioconde.github.io/site-pizzaria/', match: /base studio|pizzas|pizzaria/i },
+  { slug:'playwitheliteitem', name:'PlayWithEliteItem', url:'https://thunderstore.io/c/riskofrain2/p/CONDE/PlayWithEliteItem/', match:/playwitheliteitem|play with elite item/i },
   { slug:'ofertamatica', name:'Ofertamática', url:'https://ofertamatica.com.br/', match: /ofertam[aá]tica/i },
   { slug:'redream', name:'Re:Dream', url:'https://helioconde.github.io/Re-Dream/', match: /re.?dream/i },
   { slug:'baby-on-screen', name:'Baby On Screen', url:'https://helioconde.github.io/babyOnScreen/web/', match: /baby.?on.?screen|beb[eê].?virtual/i }
