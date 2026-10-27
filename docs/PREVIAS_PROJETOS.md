@@ -9,7 +9,7 @@ As imagens usadas em `index.html` vêm de projetos públicos próprios. **Não s
 | Re:Dream | `img/projects/redream.jpg` | Captura da tela inicial web pré-alfa; não demonstra sessão multiplayer ativa |
 | Baby On Screen | `img/projects/baby-on-screen.jpg` | Captura da versão web, não do app Windows |
 | Slimekeepers: Lost Valley | `img/projects/slimekeepers-menu.png` | **Arte do menu do jogo Godot** proveniente do repositório Slime-Harvest; **não é screenshot de gameplay** |
-| PlayWithEliteItem | Banner estilizado `R²` | Sem screenshot de jogo confirmada; a versão publicada está vinculada ao Thunderstore |
+| PlayWithEliteItem | `img/projects/playwitheliteitem.jpg` | Captura da **página pública do mod no Thunderstore**, não gameplay |
 
 ## Como são atualizadas
 
