@@ -253,6 +253,7 @@ section[id], #formacao { scroll-margin-top: 96px; }
 }
 @media (max-width: 760px) {
   .nav-wrapper { min-height: 64px; }
+  .bg-orb { display: none; } /* Avoid costly fixed blurs on small screens */
   .brand img { width: 35px; height: 35px; }
   .menu-toggle { display: block; }
   .site-nav {
