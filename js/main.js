@@ -22,7 +22,7 @@ if (menuToggle && siteNav) {
   });
 }
 
-const observer = new IntersectionObserver((entries) => {
+const observer = ('IntersectionObserver' in window) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches ? new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
@@ -33,4 +33,10 @@ const observer = new IntersectionObserver((entries) => {
   threshold: 0.14,
 });
 
-revealItems.forEach((item) => observer.observe(item));
+revealItems.forEach((item) => observer ? observer.observe(item) : item.classList.add('visible'));
+
+if (menuToggle && siteNav) {
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { siteNav.classList.remove('is-open'); menuToggle.setAttribute('aria-expanded', 'false'); menuToggle.focus(); } });
+  document.addEventListener('click', (event) => { if (!siteNav.contains(event.target) && !menuToggle.contains(event.target)) { siteNav.classList.remove('is-open'); menuToggle.setAttribute('aria-expanded', 'false'); } });
+}
+
