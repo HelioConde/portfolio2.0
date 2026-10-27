@@ -1,6 +1,6 @@
 <div align="center">
   <h1>🌐 Portfólio 2.0 — Hélio Conde</h1>
-  <p><strong>Uma vitrine dos meus projetos de front-end, aplicações web e desenvolvimento de jogos.</strong></p>
+  <p><strong>Portfólio profissional com aplicações web, ferramentas, jogos e projetos de código aberto.</strong></p>
   <p><a href="https://helioconde.github.io/portfolio2.0/"><strong>Abrir portfólio</strong></a> · <a href="https://github.com/HelioConde"><strong>Meu GitHub</strong></a> · <a href="https://www.linkedin.com/in/helioconde/"><strong>LinkedIn</strong></a></p>
 </div>
 
@@ -8,9 +8,9 @@
 
 ## Sobre
 
-O **Portfólio 2.0** é meu site pessoal para apresentar experiência, tecnologias e projetos. Esta versão foi desenvolvida com foco em **hierarquia de informação, identidade visual, navegação e adaptação a diferentes telas**.
+O **Portfólio 2.0** é meu site pessoal para apresentar experiência, tecnologias e projetos. Esta versão prioriza **projetos reais**, navegação objetiva, identidade visual consistente, acessibilidade e responsividade. A seção de projetos tem filtros por categoria e informa claramente o estágio de cada trabalho.
 
-É um site estático em HTML, CSS e JavaScript; a instalação não exige backend, banco de dados ou npm.
+O site é estático em HTML, CSS e JavaScript; **não exige npm para ser publicado**. O npm é usado apenas para executar os testes automatizados com Playwright.
 
 ## Alguns projetos do portfólio
 
@@ -20,7 +20,8 @@ O **Portfólio 2.0** é meu site pessoal para apresentar experiência, tecnologi
 | [**Base Studio Pizzas**](https://github.com/HelioConde/site-pizzaria) | Aplicação full-stack de delivery concluída para portfólio |
 | [**Ofertamática**](https://github.com/HelioConde/ofertamatica) | Ferramenta de cartazes promocionais para o varejo |
 | [**Baby On Screen**](https://github.com/HelioConde/babyOnScreen) | Mascote virtual com edições Windows e navegador |
-| [**Slimekeepers: Lost Valley**](https://github.com/HelioConde/Slime-Harvest) | Jogo independente 2D criado com Godot |
+| [**Slimekeepers: Lost Valley**](https://github.com/HelioConde/Slime-Harvest) | Jogo indie 2D com Godot **em desenvolvimento** |
+| [**Re:Dream**](https://github.com/HelioConde/Re-Dream) | Protótipo de jogo multiplayer 2D **em desenvolvimento** |
 
 Esses projetos possuem seus próprios READMEs e diferentes níveis de maturidade.
 
@@ -34,6 +35,18 @@ python -m http.server 8000
 
 Acesse `http://localhost:8000`. Também é possível inspecionar o HTML e CSS diretamente; o servidor é recomendado para testar recursos e links de forma semelhante à publicação.
 
+## Testes de qualidade
+
+```bash
+npm install
+npx playwright install chromium
+npm run test:e2e
+```
+
+A suíte inicia um servidor local, valida cinco resoluções (360, 390, 768, 1024 e 1440 px), navegação mobile, filtros dos projetos, links, metadados e ausência de overflow horizontal. O workflow `Portfolio QA` do GitHub Actions executa a suíte em pushes e pull requests para `main`.
+
+> O workflow foi adicionado; os resultados precisam ser conferidos na aba Actions. Consulte [o roadmap](docs/ROADMAP.md) para acompanhar etapas concluídas e validações pendentes.
+
 ## Estrutura
 
 ```text
@@ -41,6 +54,9 @@ index.html    Página de entrada e seções
 css/          Estilos, layout e responsividade
 js/           Interações
 img/          Imagens e apresentações dos projetos
+tests/        Testes automatizados Playwright
+docs/         Design system e roadmap
+.github/      Workflow de QA
 icon/         Ícones e favicon
 ```
 
