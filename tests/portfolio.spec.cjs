@@ -207,3 +207,33 @@ test('project gallery stays compact with three equal cards per desktop row', asy
     expect(actual[3].top).toBe(actual[5].top);
   }
 });
+
+
+test('project filters stay on one line and preview captions remain compact', async ({ page }, testInfo) => {
+  await page.goto('/');
+  const chips = page.locator('.project-filters .filter-btn');
+  await expect(chips).toHaveCount(5);
+  if (testInfo.project.use.viewport.width <= 460) {
+    const positions = await chips.evaluateAll(items => items.map(item => {
+      const r = item.getBoundingClientRect();
+      return { top: Math.round(r.top), right: Math.round(r.right) };
+    }));
+    expect(new Set(positions.map(item => item.top)).size).toBe(1);
+    expect(Math.max(...positions.map(item => item.right)))
+      .toBeLessThanOrEqual(testInfo.project.use.viewport.width - 5);
+  }
+  const captions = await page.locator('.project-image-caption').evaluateAll(elements => elements.map(el => {
+    const r = el.getBoundingClientRect();
+    const note = el.querySelector('.screen-note')?.getBoundingClientRect();
+    const action = el.querySelector('.preview-callout')?.getBoundingClientRect();
+    return { height: Math.round(r.height), noteTop: Math.round(note?.top || 0),
+      actionTop: Math.round(action?.top || 0) };
+  }));
+  expect(captions).toHaveLength(6);
+  expect(captions.every(c => c.height <= 48 && Math.abs(c.noteTop - c.actionTop) <= 4)).toBe(true);
+
+  await page.getByRole('button', { name: 'Apps', exact: true }).click();
+  await expect(page.locator('#project-count')).toHaveText('1 projeto');
+  await expect(page.locator('.project-card[data-category]:visible')).toHaveCount(1);
+  await expect(page.getByRole('heading', { name: 'Baby On Screen' })).toBeVisible();
+});
