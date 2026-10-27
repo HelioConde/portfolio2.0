@@ -68,6 +68,81 @@ if (filterButtons.length && projectCards.length) {
   });
 }
 
+// Image preview: the thumbnail links continue working without JavaScript.
+const previewDialog = document.getElementById('project-preview-dialog');
+const previewTriggers = Array.from(document.querySelectorAll('.preview-trigger'));
+const previewImage = document.getElementById('preview-dialog-image');
+const previewTitle = document.getElementById('preview-dialog-title');
+const previewDescription = document.getElementById('preview-dialog-description');
+const previewOriginal = document.getElementById('preview-original');
+const previewCounter = document.getElementById('preview-counter');
+const previewClose = document.getElementById('preview-close');
+const previewPrevious = document.getElementById('preview-previous');
+const previewNext = document.getElementById('preview-next');
+
+if (previewDialog && typeof previewDialog.showModal === 'function' &&
+    previewImage && previewTitle && previewDescription && previewOriginal) {
+  let activeTrigger = null;
+  let previewList = [];
+
+  const displayPreview = (trigger) => {
+    const card = trigger.closest('.project-card');
+    const thumbnail = trigger.querySelector('img');
+    if (!card || !thumbnail) return;
+    activeTrigger = trigger;
+
+    const projectTitle = card.querySelector('h3')?.textContent.trim() || 'Projeto';
+    const imageCaption = card.querySelector('.screen-note')?.textContent.trim() || 'Imagem original do projeto';
+    previewTitle.textContent = projectTitle;
+    previewDescription.textContent = imageCaption + '. A imagem é mostrada sem cortes.';
+    previewImage.src = trigger.href;
+    previewImage.alt = thumbnail.alt;
+    previewOriginal.href = trigger.href;
+    const position = previewList.indexOf(trigger);
+    previewCounter.textContent = (position + 1) + ' de ' + previewList.length;
+    previewPrevious.disabled = previewNext.disabled = previewList.length < 2;
+  };
+
+  const movePreview = (step) => {
+    if (!previewDialog.open || !previewList.length) return;
+    const index = previewList.indexOf(activeTrigger);
+    const next = (index + step + previewList.length) % previewList.length;
+    displayPreview(previewList[next]);
+  };
+
+  previewTriggers.forEach((trigger) => {
+    trigger.addEventListener('click', (event) => {
+      // Allow browser modifier keys to open the original file in another tab.
+      if (event.button !== 0 || event.ctrlKey || event.metaKey ||
+          event.shiftKey || event.altKey) return;
+      previewList = previewTriggers.filter((link) => !link.closest('.project-card')?.hidden);
+      if (!previewList.includes(trigger)) return;
+      event.preventDefault();
+      displayPreview(trigger);
+      previewDialog.showModal();
+      document.body.classList.add('preview-open');
+      previewClose.focus();
+    });
+  });
+
+  previewClose.addEventListener('click', () => previewDialog.close());
+  previewPrevious.addEventListener('click', () => movePreview(-1));
+  previewNext.addEventListener('click', () => movePreview(1));
+  previewDialog.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowRight') { event.preventDefault(); movePreview(1); }
+    if (event.key === 'ArrowLeft') { event.preventDefault(); movePreview(-1); }
+  });
+  previewDialog.addEventListener('click', (event) => {
+    if (event.target === previewDialog) previewDialog.close();
+  });
+  previewDialog.addEventListener('close', () => {
+    document.body.classList.remove('preview-open');
+    previewImage.removeAttribute('src');
+    // Return keyboard focus to the image selected in the gallery.
+    activeTrigger?.focus({ preventScroll: true });
+  });
+}
+
 const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if (!('IntersectionObserver' in window) || prefersReducedMotion) {
   revealItems.forEach((item) => item.classList.add('visible'));
