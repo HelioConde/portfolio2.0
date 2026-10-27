@@ -30,6 +30,15 @@ fs.mkdirSync(REPORT, { recursive: true });
         status.finalUrl = page.url();
         if (!response?.ok()) throw Error('HTTP ' + status.httpStatus);
         await page.waitForTimeout(2600);
+        // Decline optional tracking in this disposable browser, so the
+        // screenshot features the actual editor rather than a consent dialog.
+        if (project.slug === 'ofertamatica') {
+          const reject = page.getByRole('button', { name: /rejeitar opcionais/i });
+          if (await reject.isVisible({ timeout: 1200 }).catch(() => false)) {
+            await reject.click({ timeout: 3000 });
+            await page.waitForTimeout(450);
+          }
+        }
         await page.evaluate(async () => {
           await document.fonts.ready;
           await Promise.all(Array.from(document.images).map(async img => {
