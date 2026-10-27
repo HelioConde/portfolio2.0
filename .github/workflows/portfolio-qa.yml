@@ -5,7 +5,15 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  schedule:
+    - cron: '0 11 * * 1' # Mondays at 11:00 UTC: audit deployed portfolio
   workflow_dispatch:
+    inputs:
+      target:
+        description: 'Origem das capturas'
+        type: choice
+        options: [local, published]
+        default: local
 
 permissions:
   contents: read
@@ -33,6 +41,8 @@ jobs:
         run: npm run test:e2e
       - name: Capture screenshots and inspect layout
         if: always()
+        env:
+          SCREENSHOT_URL: ${{ (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.target == 'published')) && 'https://helioconde.github.io/portfolio2.0/' || '' }}
         run: npm run screenshots
       - name: Build screenshot gallery and metrics report
         if: always()
