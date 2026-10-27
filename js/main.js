@@ -43,17 +43,19 @@ if (menuToggle && siteNav) {
 }
 
 if (filterButtons.length && projectCards.length) {
-  const applyFilter = (filter) => {
+  const validFilters = new Set(Array.from(filterButtons, (button) => button.dataset.filter));
+  const applyFilter = (filter, updateUrl = false) => {
+    const safeFilter = validFilters.has(filter) ? filter : 'todos';
     let count = 0;
 
     projectCards.forEach((card) => {
-      const visible = filter === 'todos' || card.dataset.category === filter;
+      const visible = safeFilter === 'todos' || card.dataset.category === safeFilter;
       card.hidden = !visible;
       if (visible) count++;
     });
 
     filterButtons.forEach((button) => {
-      const active = button.dataset.filter === filter;
+      const active = button.dataset.filter === safeFilter;
       button.classList.toggle('is-active', active);
       button.setAttribute('aria-pressed', String(active));
     });
@@ -61,10 +63,31 @@ if (filterButtons.length && projectCards.length) {
     if (projectCount) {
       projectCount.textContent = count === 1 ? '1 projeto' : `${count} projetos`;
     }
+    if (updateUrl) {
+      // Links dos filtros funcionam na hospedagem estática, sem rotas de servidor.
+      const url = new URL(window.location.href);
+      if (safeFilter === 'todos') url.searchParams.delete('categoria');
+      else url.searchParams.set('categoria', safeFilter);
+      history.replaceState(history.state, '', url);
+    }
   };
 
-  filterButtons.forEach((button) => {
-    button.addEventListener('click', () => applyFilter(button.dataset.filter));
+  const filterList = Array.from(filterButtons);
+  filterList.forEach((button, index) => {
+    button.addEventListener('click', () => applyFilter(button.dataset.filter, true));
+    button.addEventListener('keydown', (event) => {
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? filterList.length - 1
+        : (index + (event.key === 'ArrowRight' ? 1 : -1) + filterList.length) % filterList.length;
+      filterList[nextIndex].focus();
+      applyFilter(filterList[nextIndex].dataset.filter, true);
+    });
+  });
+  const initialCategory = new URLSearchParams(window.location.search).get('categoria');
+  if (initialCategory && validFilters.has(initialCategory)) applyFilter(initialCategory);
+  window.addEventListener('popstate', () => {
+    applyFilter(new URLSearchParams(window.location.search).get('categoria') || 'todos');
   });
 }
 

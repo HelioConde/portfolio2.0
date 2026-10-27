@@ -42,3 +42,10 @@ Escala de espaçamento: `--space-1/2/3/4/5/6/8/10/12/16`. Tamanhos: `--radius`, 
 - GitHub Actions: `.github/workflows/portfolio-qa.yml`.
 - Casos automatizados: layout 360/390/768/1024/1440, filtros, menu, metadados, ausência de JavaScript exceptions e overflow.
 - Revisão visual e Lighthouse ainda exigem evidência de execução; **não assumir PASS sem logs**.
+
+## Refinamento dos filtros — Taste + Web Design Guidelines
+- Os botões de categoria aceitam setas horizontais, Home e End; o foco acompanha a categoria selecionada.
+- URLs como `?categoria=games` preservam um filtro diretamente no GitHub Pages sem backend.
+- Uma categoria de URL desconhecida mantém todos os projetos visíveis.
+- O contador é anunciado de forma não intrusiva por `role="status"` e a instrução de teclado aparece para quem navega pelos projetos.
+- Testes Playwright verificam deep-link, reload, foco, seleção e retorno para Todos.

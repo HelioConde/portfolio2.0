@@ -434,3 +434,8 @@ body.preview-open { overflow: hidden; }
   *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .js .reveal:not(.visible) { opacity: 1; transform: none; }
 }
+
+/* Filtros compartilháveis: ajuda discreta, foco e feedback visual consistentes. */
+.project-filter-help{color:var(--subtle);font-size:.78rem;line-height:1.5;margin:0 0 8px 4px}
+.project-filters .filter-btn:focus-visible{outline:3px solid var(--focus-ring);outline-offset:3px}
+@media(max-width:460px){.project-filter-help{font-size:.73rem}.project-filters{gap:6px}.filter-btn{min-height:44px}}

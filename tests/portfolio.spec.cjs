@@ -237,3 +237,27 @@ test('project filters stay on one line and preview captions remain compact', asy
   await expect(page.locator('.project-card[data-category]:visible')).toHaveCount(1);
   await expect(page.getByRole('heading', { name: 'Baby On Screen' })).toBeVisible();
 });
+
+
+test('project categories are shareable and keyboard navigable on Pages', async ({ page }) => {
+  await page.goto('/?categoria=games');
+  await expect(page.locator('.project-card[data-category]:visible')).toHaveCount(2);
+  await expect(page.getByRole('button', { name: 'Jogos', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: 'Jogos', exact: true }).focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(page.getByRole('button', { name: 'Modding', exact: true })).toBeFocused();
+  await expect(page.locator('.project-card[data-category]:visible')).toHaveCount(1);
+  await expect(page).toHaveURL(/categoria=mods/);
+  await page.reload();
+  await expect(page.getByRole('button', { name: 'Modding', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await page.keyboard.press('Tab');
+  await page.getByRole('button', { name: 'Todos', exact: true }).click();
+  await expect(page.locator('.project-card[data-category]:visible')).toHaveCount(6);
+  await expect(page).not.toHaveURL(/categoria=/);
+});
+
+test('invalid shared category degrades gracefully to all projects', async ({ page }) => {
+  await page.goto('/?categoria=anything');
+  await expect(page.locator('.project-card[data-category]:visible')).toHaveCount(6);
+  await expect(page.getByRole('button', { name: 'Todos', exact: true })).toHaveAttribute('aria-pressed', 'true');
+});
