@@ -14,8 +14,8 @@ Atualização: 2026-10-27. Etapas são sequenciais; alterações já aplicadas e
 | 08 | SEO: canonical, OG/Twitter, JSON-LD e sitemap | ✅ Aplicado |
 | 09 | Criar testes Playwright com cinco larguras | ✅ Suíte criada |
 | 10 | Criar workflow de GitHub Actions | ✅ Arquivo criado |
-| 11 | Executar Playwright e corrigir eventuais falhas | ⏳ Pendente de confirmação no Actions |
-| 12 | Criar galeria de capturas em cinco resoluções | ✅ Sistema implementado; execução visual precisa de evidências |
+| 11 | Executar Playwright e corrigir eventuais falhas | ✅ Execução do PR #1 aprovada em 27/10/2026 |
+| 12 | Criar galeria de capturas em cinco resoluções | ✅ 37 capturas reais, análise visual e correções aplicadas |
 | 13 | Inspecionar capturas e validar Lighthouse/WCAG | ⏳ Inspeção visual e auditoria ainda pendentes |
 | 14 | Verificar o GitHub Pages publicado após deploy | ⏳ Pendente |
 
@@ -47,8 +47,8 @@ O site continua estático e pode ser publicado no GitHub Pages. O arquivo `sitem
 - Workflow PR #1: **PASS** — testes funcionais + capturas em 360, 390, 768, 1024 e 1440 px.
 - Primeira coleta: 37 PNGs; **0 alertas automáticos** para JS, console, imagens quebradas, overflow, texto recortado e elementos fora da tela.
 - Capturas revelaram problemas visuais não detectados pelos asserts: apresentação mobile muito longa, último card órfão no desktop e cabeçalho sobreposto em screenshots de seções compridas.
-- Correções aplicadas na branch `audit/playwright-visual-2026-10-27`: hero mais compacto, grid reequilibrado, screenshot de seções sem elementos flutuantes.
+- Correções realizadas e integradas à `main` pelo [PR #1](https://github.com/HelioConde/portfolio2.0/pull/1): hero mais compacto, grid reequilibrado, screenshots de seções sem sobreposição.
 - Segunda coleta: 37 PNGs; **0 alertas automáticos**. Altura da página a 360px foi de **8277 para 7966 px**; a 1440px, de **5602 para 5368 px**.
 - Última verificação: primeira dobra capturada antes das seções e aprimoramento do banner horizontal.
 
-A auditoria visual foi baseada em screenshots reais do runner, não em estimativa. Métricas de Lighthouse e auditoria WCAG completa continuam independentes.
+A auditoria visual foi baseada em screenshots reais do runner, não em estimativa. O workflow final foi concluído com sucesso, sem alertas automáticos. Métricas de Lighthouse e auditoria WCAG completa continuam independentes.
