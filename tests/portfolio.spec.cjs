@@ -167,3 +167,43 @@ test('filtered preview navigation only shows the chosen category', async ({ page
   await page.getByRole('button', { name: 'Fechar visualização' }).click();
   await expect(page.locator('#project-preview-dialog')).toBeHidden();
 });
+
+
+test('project gallery stays compact with three equal cards per desktop row', async ({ page }, testInfo) => {
+  await page.goto('/');
+  const cards = page.locator('.projects-grid .project-card');
+  await expect(cards).toHaveCount(6);
+
+  const actual = await cards.evaluateAll(nodes => nodes.map(node => {
+    const rect = node.getBoundingClientRect();
+    const img = node.querySelector('.preview-trigger');
+    const preview = img?.getBoundingClientRect();
+    return { top: Math.round(rect.top), left: Math.round(rect.left),
+      width: Math.round(rect.width), height: Math.round(rect.height),
+      imageHeight: preview ? Math.round(preview.height) : 0,
+      columns: getComputedStyle(node).gridColumnStart,
+      display: getComputedStyle(node).display };
+  }));
+  const viewport = testInfo.project.use.viewport.width;
+  const expectedColumns = viewport > 1100 ? 3 : viewport > 760 ? 2 : 1;
+  const expectedRows = 6 / expectedColumns;
+  const rows = [...new Set(actual.map(card => card.top))];
+  expect(rows).toHaveLength(expectedRows);
+  expect(actual.every(card => card.width > 0 && card.imageHeight > 0)).toBe(true);
+  expect(actual.every(card => card.imageHeight <= (viewport > 760 ? 212 : 242))).toBe(true);
+
+  for (let row = 0; row < expectedRows; row++) {
+    const group = actual.slice(row * expectedColumns, (row + 1) * expectedColumns);
+    expect(new Set(group.map(card => card.top)).size).toBe(1);
+    const minWidth = Math.min(...group.map(card => card.width));
+    const maxWidth = Math.max(...group.map(card => card.width));
+    expect(maxWidth - minWidth).toBeLessThanOrEqual(2);
+    expect(group.every(card => card.display === 'flex')).toBe(true);
+  }
+  // Base Studio Pizzas and Baby On Screen no longer span extra columns.
+  if (expectedColumns === 3) {
+    expect(actual[0].top).toBe(actual[1].top);
+    expect(actual[0].top).toBe(actual[2].top);
+    expect(actual[3].top).toBe(actual[5].top);
+  }
+});
