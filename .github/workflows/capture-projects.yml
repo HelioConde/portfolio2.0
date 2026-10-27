@@ -1,0 +1,60 @@
+name: Capturar previews reais dos projetos
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/capture-projects.cjs
+      - .github/workflows/capture-projects.yml
+  workflow_dispatch:
+  schedule:
+    - cron: '35 9 * * 1'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: screenshots-publicos
+  cancel-in-progress: false
+
+jobs:
+  capture-projects:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Check Chrome
+        run: google-chrome --version
+      - name: Photograph public project pages
+        env:
+          CI: 'true'
+        run: node scripts/capture-projects.cjs
+      - name: Upload originals and capture report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots-publicos-projetos
+          path: |
+            visual-reports/project-sites/
+            img/projects/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Commit only verified thumbnails
+        if: success() && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add img/projects/*.jpg
+          if ! git diff --cached --quiet; then
+            git commit -m "assets: atualiza capturas reais dos projetos"
+            git push
+          fi
