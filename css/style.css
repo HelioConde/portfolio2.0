@@ -213,15 +213,15 @@ section[id], #formacao { scroll-margin-top: 96px; }
 .projects-grid > .project-card:last-child .project-visual small { text-align: center; }
 
 
-/* Screenshots from the published projects, not generated mockups */
-.project-screenshot {
+/* Real screenshots and project menu artwork (clearly distinguished) */
+:is(.project-screenshot, .project-artwork) {
   position: relative;
   isolation: isolate;
   overflow: hidden;
   border-bottom: 1px solid var(--border);
   background: #1c2942;
 }
-.project-screenshot img {
+:is(.project-screenshot, .project-artwork) img {
   width: 100%;
   height: 198px;
   display: block;
@@ -229,8 +229,8 @@ section[id], #formacao { scroll-margin-top: 96px; }
   object-position: center top;
   transition: transform .35s ease;
 }
-.project-card.featured .project-screenshot img { height: 305px; }
-.project-card:hover .project-screenshot img { transform: scale(1.02); }
+.project-card.featured :is(.project-screenshot, .project-artwork) img { height: 305px; }
+.project-card:hover :is(.project-screenshot, .project-artwork) img { transform: scale(1.02); }
 .screen-note {
   position: absolute;
   inset: auto auto 12px 12px;
@@ -244,28 +244,28 @@ section[id], #formacao { scroll-margin-top: 96px; }
   font-weight: 680;
   pointer-events: none;
 }
-.projects-grid > .project-card:last-child .project-screenshot {
+.projects-grid > .project-card:last-child :is(.project-screenshot, .project-artwork) {
   min-height: 270px;
   height: 100%;
   border-right: 1px solid var(--border);
   border-bottom: 0;
 }
-.projects-grid > .project-card:last-child .project-screenshot img {
+.projects-grid > .project-card:last-child :is(.project-screenshot, .project-artwork) img {
   height: 100%;
   min-height: 270px;
   object-position: left top;
 }
 @media (max-width: 760px) {
-  .project-card.featured .project-screenshot img { height: 205px; }
-  .project-screenshot img { height: 190px; }
-  .projects-grid > .project-card:last-child .project-screenshot {
+  .project-card.featured :is(.project-screenshot, .project-artwork) img { height: 205px; }
+  :is(.project-screenshot, .project-artwork) img { height: 190px; }
+  .projects-grid > .project-card:last-child :is(.project-screenshot, .project-artwork) {
     height: auto; min-height: 0;
     border-right: 0; border-bottom: 1px solid var(--border);
   }
-  .projects-grid > .project-card:last-child .project-screenshot img { height: 190px; min-height: 0; }
+  .projects-grid > .project-card:last-child :is(.project-screenshot, .project-artwork) img { height: 190px; min-height: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .project-card:hover .project-screenshot img { transform: none; }
+  .project-card:hover :is(.project-screenshot, .project-artwork) img { transform: none; }
 }
 
 /* Process and technologies */
