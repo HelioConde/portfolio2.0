@@ -51,6 +51,7 @@ test('capturar layout, estados e diagnostico visual', async ({ page }, testInfo)
   await page.getByRole('button', { name: 'Todos', exact: true }).click();
 
   if (testInfo.project.use.viewport.width <= 760) {
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
     await page.getByRole('button', { name: 'Abrir menu' }).click();
     await page.screenshot({
       path: path.join(folder, 'menu-mobile.png'),
