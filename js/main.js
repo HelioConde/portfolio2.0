@@ -31,7 +31,7 @@ const observer = ('IntersectionObserver' in window) && !window.matchMedia('(pref
   });
 }, {
   threshold: 0.14,
-});
+}) : null;
 
 revealItems.forEach((item) => observer ? observer.observe(item) : item.classList.add('visible'));
 
