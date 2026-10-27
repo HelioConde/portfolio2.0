@@ -7,7 +7,8 @@ const capturesDir = path.join(root, 'capturas');
 const viewports = ['mobile-360', 'mobile-390', 'tablet-768', 'laptop-1024', 'desktop-1440'];
 const shots = [
   ['pagina-inteira', 'Página inteira'],
-  ['inicio', 'Primeira dobra'],
+  ['inicio', 'Seção inicial'],
+  ['primeira-dobra', 'Primeira dobra (viewport)'],
   ['projetos', 'Projetos'],
   ['destaque', 'Projeto principal'],
   ['contato', 'Contato'],
@@ -31,10 +32,12 @@ for (const viewport of viewports) {
   else {
     if (metrics.horizontalOverflow) problems.push('Rolagem horizontal');
     if (metrics.outOfViewport.length) problems.push(metrics.outOfViewport.length + ' elementos fora da tela');
+    if (metrics.clippedText?.length) problems.push(metrics.clippedText.length + ' textos cortados');
     if (metrics.brokenImages.length) problems.push(metrics.brokenImages.length + ' imagens não carregadas');
     if (metrics.pageErrors.length) problems.push(metrics.pageErrors.length + ' erros de JavaScript');
+    if (metrics.consoleErrors?.length) problems.push(metrics.consoleErrors.length + ' erros no console');
   }
-  const expected = viewport.startsWith('mobile-') ? 7 : 6;
+  const expected = viewport.startsWith('mobile-') ? 8 : 7;
   if (imgs.length < expected) problems.push((expected - imgs.length) + ' capturas ausentes');
   const result = problems.length ? 'REVISAR' : 'OK';
   summaries.push({ viewport, result, images: imgs.length, problems, metrics });
