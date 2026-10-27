@@ -35,12 +35,12 @@ test('capturar layout, estados e diagnostico visual', async ({ page }, testInfo)
   fs.mkdirSync(folder, { recursive: true });
 
   for (const [name, selector] of TARGETS) {
-    const locator = page.locator(selector).first();
-    await locator.screenshot({
-      path: path.join(folder, name + '.png'),
-      animations: 'disabled',
-      timeout: 20000,
-    });
+    const file = path.join(folder, name + '.png');
+    if (name === 'pagina-inteira') {
+      await page.screenshot({ path: file, fullPage: true, animations: 'disabled', timeout: 20000 });
+    } else {
+      await page.locator(selector).first().screenshot({ path: file, animations: 'disabled', timeout: 20000 });
+    }
   }
 
   await page.getByRole('button', { name: 'Jogos', exact: true }).click();
@@ -52,8 +52,9 @@ test('capturar layout, estados e diagnostico visual', async ({ page }, testInfo)
 
   if (testInfo.project.use.viewport.width <= 760) {
     await page.getByRole('button', { name: 'Abrir menu' }).click();
-    await page.locator('.site-header').screenshot({
+    await page.screenshot({
       path: path.join(folder, 'menu-mobile.png'),
+      clip: { x: 0, y: 0, width: testInfo.project.use.viewport.width, height: 420 },
       animations: 'disabled',
     });
     await page.keyboard.press('Escape');
