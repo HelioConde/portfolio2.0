@@ -3,12 +3,8 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description"
-        content="Portfólio de Hélio Conde, Desenvolvedor Front-End Júnior especializado em React, JavaScript, HTML, CSS e integração com APIs. Projetos reais de aplicações web e sistemas completos." />
-    <meta name="keywords"
-        content="Hélio Conde, desenvolvedor front-end júnior, React, JavaScript, HTML, CSS, portfólio" />
+    <meta name="description" content="Conheça os projetos de Hélio Conde: desenvolvimento front-end, aplicações web com React, Ofertamática, jogos e mods. Código, demonstrações e contato." />
     <meta name="author" content="Hélio Conde" />
     <meta name="theme-color" content="#070b1a" />
     <meta property="og:url" content="https://helioconde.github.io/portfolio2.0/" />
@@ -17,10 +13,18 @@
     <meta property="og:description"
         content="Projetos reais com foco em interfaces modernas, responsividade e integração com APIs." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="./img/front.png" />
-    <title>Hélio Conde | Desenvolvedor Front-End Júnior (React)</title>
+    <meta property="og:image" content="https://helioconde.github.io/portfolio2.0/img/front.png" />
+    <meta property="og:image:alt" content="Ilustração do portfólio de Hélio Conde" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hélio Conde | Portfólio de Desenvolvimento" />
+    <meta name="twitter:description" content="Aplicações web, ferramentas, jogos e mods. Conheça os projetos e o código." />
+    <meta name="twitter:image" content="https://helioconde.github.io/portfolio2.0/img/front.png" />
+    <link rel="sitemap" type="application/xml" href="./sitemap.xml" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Hélio Conde","url":"https://helioconde.github.io/portfolio2.0/","jobTitle":"Desenvolvedor Front-End","sameAs":["https://github.com/HelioConde","https://www.linkedin.com/in/helioconde/"]}</script>
+    <title>Hélio Conde | Desenvolvedor Front-End · Projetos e Portfólio</title>
     <link rel="shortcut icon" type="image/x-icon" href="icon/favicon.ico" />
     <link rel="stylesheet" href="./css/style.css" />
+    <script>document.documentElement.classList.add("js");</script>
 </head>
 
 <body>
@@ -44,127 +48,139 @@
             </button>
 
             <nav class="site-nav" id="site-menu" aria-label="Navegação principal">
-                <a href="#sobre">Sobre</a>
-                <a href="#stack">Tecnologias</a>
                 <a href="#projetos">Projetos</a>
+                <a href="#experiencia">Processo</a>
+                <a href="#stack">Tecnologias</a>
+                <a href="#sobre">Sobre</a>
                 <a href="#contato">Contato</a>
             </nav>
         </div>
     </header>
 
     <main id="conteudo">
-        <section class="hero section" id="home">
+        <section class="hero section" id="home" aria-labelledby="hero-title">
             <div class="container hero-grid">
                 <div class="hero-content reveal">
-                    <span class="eyebrow">Disponível para oportunidades</span>
-                    <h1>Desenvolvedor Front-End Júnior</h1>
-                    <p class="hero-subtitle">Interfaces modernas com React, JavaScript e integração com APIs.</p>
-                    <p class="hero-text">
-                        Desenvolvo interfaces modernas com React, JavaScript e APIs REST.
-                        Tenho experiência na criação de aplicações completas com integração de backend, foco em
-                        usabilidade e organização de código.
-                    </p>
-
-                    <div class="hero-badges">
-                        <span>React</span>
-                        <span>JavaScript</span>
-                        <span>Supabase</span>
-                        <span>APIs REST</span>
-                    </div>
-
+                    <p class="eyebrow">Hélio Conde · Desenvolvedor Front-End Júnior</p>
+                    <h1 id="hero-title">Interfaces bem pensadas. <span class="accent-text">Projetos de verdade.</span></h1>
+                    <p class="hero-subtitle">Transformo ideias em experiências web acessíveis, responsivas e funcionais.</p>
+                    <p class="hero-text">Desenvolvo aplicações com React, JavaScript e integração com APIs. Aqui você encontra projetos web, ferramentas e jogos que mostram minha evolução na prática.</p>
                     <div class="hero-actions">
-                        <a class="btn btn-primary" href="#projetos">Ver projetos</a>
-                        <a class="btn btn-secondary" href="https://github.com/HelioConde" target="_blank"
-                            rel="noreferrer">GitHub</a>
-                        <a class="btn btn-ghost" href="https://www.linkedin.com/in/helioconde/" target="_blank"
-                            rel="noreferrer">LinkedIn</a>
+                        <a class="btn btn-primary" href="#projetos">Explorar projetos</a>
+                        <a class="btn btn-secondary" href="#contato">Entrar em contato</a>
+                        <a class="text-link" href="https://github.com/HelioConde" target="_blank" rel="noopener noreferrer">Meu GitHub <span aria-hidden="true">↗</span></a>
                     </div>
+                    <p class="hero-availability"><span class="status-dot" aria-hidden="true"></span> Aberto a oportunidades em Front-End</p>
                 </div>
-
                 <div class="hero-card reveal delay-1">
-                    <div class="hero-card-top">
-                        <span class="status-dot"></span>
-                        <span>Front-End Júnior</span>
-                    </div>
-                    <img src="./img/front.png" alt="Ilustração de desenvolvedor front-end" />
+                    <div class="hero-card-top"><span>Design, código e aprendizado contínuo</span><span class="hero-card-symbol" aria-hidden="true">&lt;/&gt;</span></div>
+                    <img src="./img/front.png" alt="Ilustração que representa o desenvolvimento de interfaces web" fetchpriority="high" decoding="async" />
                     <div class="hero-card-info">
-                        <div>
-                            <strong>Base principal</strong>
-                            <span>Brasília - DF</span>
-                        </div>
-                        <div>
-                            <strong>Contato</strong>
-                            <span>helio.conde.contato@gmail.com</span>
-                        </div>
+                        <div><strong>Foco</strong><span>React · JavaScript · UX</span></div>
+                        <div><strong>Projetos</strong><span>Web · Automação · Games</span></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section" id="sobre">
+        <section class="section projects-section" id="projetos" aria-labelledby="projects-title">
             <div class="container">
                 <div class="section-heading reveal">
-                    <span class="section-kicker">Sobre mim</span>
-                    <h2>Busco minha próxima oportunidade para crescer como desenvolvedor.</h2>
+                    <span class="section-kicker">Trabalhos selecionados</span>
+                    <h2 id="projects-title">Projetos que você pode conhecer por dentro.</h2>
+                    <p>Do sistema de pedidos à criação de jogos: código, decisões técnicas e trabalhos em diferentes estágios de evolução.</p>
                 </div>
-
-                <div class="about-grid">
-                    <article class="card reveal">
-                        <p>
-                            Sou Hélio Conde, desenvolvedor Front-End focado em React, JavaScript e interfaces web
-                            modernas.
-                            Tenho experiência criando aplicações completas com integração de APIs e backend.
-                        </p>
-                        <p>
-                            Busco minha primeira oportunidade profissional para contribuir com projetos reais, aprender
-                            em equipe
-                            e continuar evoluindo tecnicamente.
-                        </p>
+                <div class="project-filters" role="group" aria-label="Filtrar projetos por tipo">
+                    <button type="button" class="filter-btn is-active" data-filter="todos" aria-pressed="true">Todos</button>
+                    <button type="button" class="filter-btn" data-filter="web" aria-pressed="false">Web</button>
+                    <button type="button" class="filter-btn" data-filter="games" aria-pressed="false">Jogos</button>
+                    <button type="button" class="filter-btn" data-filter="mods" aria-pressed="false">Modding</button>
+                    <button type="button" class="filter-btn" data-filter="apps" aria-pressed="false">Aplicativos</button>
+                </div>
+                <p class="project-count" id="project-count" role="status" aria-live="polite">6 projetos</p>
+                <div class="projects-grid" id="projects-grid">
+                    <article class="project-card featured reveal" data-category="web" aria-labelledby="project-pizzaria">
+                        <div class="project-image"><img src="./img/pizzaria-preview.png" alt="Prévia do site de pedidos da Base Studio Pizzas" loading="lazy" decoding="async" /></div>
+                        <div class="project-content">
+                            <span class="project-tag">Aplicação concluída</span>
+                            <h3 id="project-pizzaria">Base Studio Pizzas</h3>
+                            <p>Aplicação de delivery com cardápio, carrinho, pedidos e painéis de acompanhamento. Projeto que reúne interface, dados e fluxos de usuários.</p>
+                            <div class="project-tech"><span>React</span><span>JavaScript</span><span>Supabase</span></div>
+                            <div class="project-actions">
+                                <a class="btn btn-primary" href="https://helioconde.github.io/site-pizzaria/" target="_blank" rel="noopener noreferrer">Ver projeto <span aria-hidden="true">↗</span></a>
+                                <a class="btn btn-secondary" href="https://github.com/HelioConde/site-pizzaria" target="_blank" rel="noopener noreferrer">Código-fonte</a>
+                            </div>
+                        </div>
                     </article>
-
-                    <aside class="card highlight reveal delay-1">
-                        <h3>O que eu entrego</h3>
-                        <ul>
-                            <li>Interfaces limpas, responsivas e focadas na experiência do usuário</li>
-                            <li>Integração entre front-end e backend com APIs</li>
-                            <li>Organização de código e evolução contínua do projeto</li>
-                            <li>Vontade real de aprender rápido e contribuir em equipe</li>
-                        </ul>
-                    </aside>
+                    <article class="project-card reveal delay-1" data-category="mods" aria-labelledby="project-elite">
+                        <div class="project-visual visual-mod" aria-hidden="true"><span>R<span class="visual-sup">2</span></span><small>C# / MODDING</small></div>
+                        <div class="project-content">
+                            <span class="project-tag">Mod de jogo</span>
+                            <h3 id="project-elite">PlayWithEliteItem</h3>
+                            <p>Mod para Risk of Rain 2 focado na manipulação de itens elite e na lógica de sistemas internos do jogo.</p>
+                            <div class="project-tech"><span>C#</span><span>BepInEx</span><span>Unity</span></div>
+                            <div class="project-actions"><a class="btn btn-secondary" href="https://github.com/HelioConde/PlayWithEliteItem" target="_blank" rel="noopener noreferrer">Explorar código <span aria-hidden="true">↗</span></a></div>
+                        </div>
+                    </article>
+                    <article class="project-card reveal" data-category="web" aria-labelledby="project-ofertamatica">
+                        <div class="project-visual visual-oferta" aria-hidden="true"><span>O<span class="visual-dot">.</span></span><small>FERRAMENTA WEB</small></div>
+                        <div class="project-content">
+                            <span class="project-tag">Ferramenta em evolução</span>
+                            <h3 id="project-ofertamatica">Ofertamática</h3>
+                            <p>Criação de cartazes promocionais para o varejo, com formatos de impressão e automação da preparação de ofertas.</p>
+                            <div class="project-tech"><span>JavaScript</span><span>UI/UX</span><span>Automação</span></div>
+                            <div class="project-actions">
+                                <a class="btn btn-primary" href="https://ofertamatica.com.br/" target="_blank" rel="noopener noreferrer">Abrir ferramenta <span aria-hidden="true">↗</span></a>
+                                <a class="btn btn-secondary" href="https://github.com/HelioConde/ofertamatica" target="_blank" rel="noopener noreferrer">Código-fonte</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="project-card reveal delay-1" data-category="games" aria-labelledby="project-slime">
+                        <div class="project-visual visual-slime" aria-hidden="true"><span>SL</span><small>GODOT / FANTASIA</small></div>
+                        <div class="project-content">
+                            <span class="project-tag project-tag-progress">Em desenvolvimento</span>
+                            <h3 id="project-slime">Slimekeepers: Lost Valley</h3>
+                            <p>Jogo indie de exploração, cultivo e criaturas em um mundo de fantasia acolhedora. Ainda em desenvolvimento no Godot.</p>
+                            <div class="project-tech"><span>Godot</span><span>GDScript</span><span>Pixel Art</span></div>
+                            <div class="project-actions"><a class="btn btn-secondary" href="https://github.com/HelioConde/Slime-Harvest" target="_blank" rel="noopener noreferrer">Acompanhar projeto <span aria-hidden="true">↗</span></a></div>
+                        </div>
+                    </article>
+                    <article class="project-card reveal delay-2" data-category="games" aria-labelledby="project-redream">
+                        <div class="project-visual visual-dream" aria-hidden="true"><span>R:D</span><small>AÇÃO 2D / WEB</small></div>
+                        <div class="project-content">
+                            <span class="project-tag project-tag-progress">Protótipo em desenvolvimento</span>
+                            <h3 id="project-redream">Re:Dream</h3>
+                            <p>Experimento de jogo web multiplayer 2D de ação e plataformas, com desenvolvimento e testes em andamento.</p>
+                            <div class="project-tech"><span>React</span><span>WebSocket</span><span>2D</span></div>
+                            <div class="project-actions"><a class="btn btn-secondary" href="https://github.com/HelioConde/Re-Dream" target="_blank" rel="noopener noreferrer">Ver repositório <span aria-hidden="true">↗</span></a></div>
+                        </div>
+                    </article>
+                    <article class="project-card reveal" data-category="apps" aria-labelledby="project-baby">
+                        <div class="project-visual visual-baby" aria-hidden="true"><span>BoS</span><small>APLICATIVO</small></div>
+                        <div class="project-content">
+                            <span class="project-tag">Aplicativo experimental</span>
+                            <h3 id="project-baby">Baby On Screen</h3>
+                            <p>Mascote virtual para a tela do computador e experiências no navegador, em diferentes versões do projeto.</p>
+                            <div class="project-tech"><span>Desktop</span><span>Web</span><span>Interação</span></div>
+                            <div class="project-actions"><a class="btn btn-secondary" href="https://github.com/HelioConde/babyOnScreen" target="_blank" rel="noopener noreferrer">Conhecer projeto <span aria-hidden="true">↗</span></a></div>
+                        </div>
+                    </article>
                 </div>
+                <p class="projects-more">Mais experimentos e repositórios estão disponíveis no <a href="https://github.com/HelioConde?tab=repositories" target="_blank" rel="noopener noreferrer">meu GitHub <span aria-hidden="true">↗</span></a>.</p>
             </div>
         </section>
 
-        <section class="section" id="experiencia">
+        <section class="section process-section" id="experiencia" aria-labelledby="process-title">
             <div class="container">
                 <div class="section-heading reveal">
-                    <span class="section-kicker">Experiência prática</span>
-                    <h2>Projetos que demonstram minha forma de desenvolver.</h2>
+                    <span class="section-kicker">Minha abordagem</span>
+                    <h2 id="process-title">Da ideia à implementação.</h2>
+                    <p>Busco desenvolver produtos compreensíveis para quem usa e organizados para quem mantém.</p>
                 </div>
-
-                <div class="experience-grid">
-                    <article class="card experience-card reveal">
-                        <span class="project-tag">Projeto principal</span>
-                        <h3>Desenvolvedor Front-End — Base Studio Pizzas</h3>
-                        <p>Aplicação web de pedidos com fluxo completo de compra, autenticação e área administrativa.
-                        </p>
-                        <ul>
-                            <li>Desenvolvimento da interface do cliente com cardápio, carrinho e checkout</li>
-                            <li>Integração com Supabase para pedidos, autenticação, produtos e usuários</li>
-                            <li>Painéis para cliente, administrador e motoboy com atualização de status</li>
-                            <li>Organização do projeto com componentes, rotas e consumo de APIs REST</li>
-                        </ul>
-                    </article>
-
-                    <article class="card experience-metrics reveal delay-1">
-                        <h3>O que esse projeto comprova</h3>
-                        <div class="metrics-grid">
-                            <div><strong>React</strong><span>componentes, rotas e estado</span></div>
-                            <div><strong>API REST</strong><span>integração entre front-end e backend</span></div>
-                            <div><strong>Supabase</strong><span>dados, autenticação e persistência</span></div>
-                            <div><strong>E-commerce</strong><span>fluxo real de pedido e gestão</span></div>
-                        </div>
-                    </article>
+                <div class="process-grid">
+                    <article class="card process-card reveal"><span class="process-index" aria-hidden="true">01</span><h3>Entender</h3><p>Definir o objetivo, organizar funcionalidades e priorizar o que realmente importa.</p></article>
+                    <article class="card process-card reveal delay-1"><span class="process-index" aria-hidden="true">02</span><h3>Construir</h3><p>Criar interfaces responsivas e integrar dados, componentes e interações.</p></article>
+                    <article class="card process-card reveal delay-2"><span class="process-index" aria-hidden="true">03</span><h3>Melhorar</h3><p>Testar os fluxos, revisar acessibilidade e evoluir com base nos problemas encontrados.</p></article>
                 </div>
             </div>
         </section>
@@ -172,8 +188,8 @@
         <section class="section" id="stack">
             <div class="container">
                 <div class="section-heading reveal">
-                    <span class="section-kicker">Tecnologias principais</span>
-                    <h2>Tecnologias que utilizo no desenvolvimento web.</h2>
+                    <span class="section-kicker">Tecnologias</span>
+                    <h2>Ferramentas que uso para transformar ideias em código.</h2>
                 </div>
 
                 <div class="stack-grid">
@@ -191,121 +207,32 @@
             </div>
         </section>
 
-        <section class="section" id="projetos">
+        <section class="section about-section" id="sobre" aria-labelledby="about-title">
             <div class="container">
                 <div class="section-heading reveal">
-                    <span class="section-kicker">Projetos</span>
-                    <h2>Projetos que representam melhor meu nível atual.</h2>
+                    <span class="section-kicker">Sobre mim</span>
+                    <h2 id="about-title">Curiosidade para aprender. Projetos para praticar.</h2>
                 </div>
-
-                <div class="projects-grid">
-                    <article class="project-card featured reveal">
-
-                        <div class="project-image">
-                            <img src="./img/pizzaria-preview.png" alt="Prévia da aplicação Base Studio Pizzas" loading="lazy" decoding="async">
-                        </div>
-
-                        <div class="project-content">
-                            <span class="project-tag">Projeto em destaque</span>
-
-                            <h3>Base Studio Pizzas</h3>
-
-                            <p>
-                                Aplicação web completa de pedidos para pizzaria com fluxo de compra,
-                                autenticação e painel administrativo.
-                            </p>
-
-                            <ul>
-                                <li>Front-end com React, JavaScript e CSS modular</li>
-                                <li>Sistema de pedidos semelhante a e-commerce real</li>
-                                <li>Integração com Supabase</li>
-                                <li>Painéis para cliente, administrador e motoboy</li>
-                            </ul>
-
-                            <div class="project-tech">
-                                <span>React</span>
-                                <span>Supabase</span>
-                                <span>JavaScript</span>
-                                <span>CSS</span>
-                            </div>
-
-                            <div class="project-actions">
-                                <a class="btn btn-primary" href="https://github.com/HelioConde/site-pizzaria"
-                                    target="_blank" rel="noopener noreferrer">Ver código</a>
-
-                                <a class="btn btn-secondary" href="https://helioconde.github.io/site-pizzaria/"
-                                    target="_blank" rel="noopener noreferrer">Ver projeto</a>
-                            </div>
-                        </div>
-
+                <div class="about-grid">
+                    <article class="card reveal">
+                        <h3>Quem sou</h3>
+                        <p>Sou Hélio Conde, desenvolvedor Front-End com formação técnica e interesse em aplicações web, interfaces e desenvolvimento de jogos.</p>
+                        <p>Busco minha primeira oportunidade profissional na área de desenvolvimento, contribuindo com projetos reais e aprendendo em equipe.</p>
                     </article>
-
-                    <article class="project-card reveal delay-1">
-                        <div class="project-content">
-                            <span class="project-tag">Projeto em destaque</span>
-                            <h3>PlayWithEliteItem</h3>
-                            <p>
-                                Mod desenvolvido para o jogo Risk of Rain 2 que permite selecionar e alterar itens elite
-                                durante a gameplay.
-                                Projeto focado em lógica de programação, modding e manipulação de sistemas internos do
-                                jogo.
-                            </p>
-                            <ul>
-                                <li>C#, Unity e BepInEx</li>
-                                <li>Modding e manipulação de lógica do jogo</li>
-                            </ul>
-                            <div class="project-tech">
-                                <span>C#</span>
-                                <span>BepInEx</span>
-                                <span>Modding</span>
-                                <span>Game Logic</span>
-                            </div>
-                            <div class="project-actions">
-                                <a class="btn btn-primary" href="https://github.com/HelioConde/PlayWithEliteItem"
-                                    target="_blank" rel="noreferrer">Ver código</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-card reveal delay-2">
-                        <div class="project-content">
-                            <span class="project-tag">Ferramenta para varejo</span>
-                            <h3>Ofertamática</h3>
-                            <p>Gerador de cartazes promocionais com formatos de impressão e recursos de automação para o varejo.</p>
-                            <div class="project-tech"><span>JavaScript</span><span>UI/UX</span><span>Automação</span></div>
-                            <div class="project-actions">
-                                <a class="btn btn-primary" href="https://ofertamatica.com.br/" target="_blank" rel="noopener noreferrer">Abrir ferramenta</a>
-                                <a class="btn btn-secondary" href="https://github.com/HelioConde/ofertamatica" target="_blank" rel="noopener noreferrer">Ver código</a>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="project-card reveal">
-                        <div class="project-content">
-                            <span class="project-tag">Em desenvolvimento</span>
-                            <h3>Slimekeepers: Lost Valley</h3>
-                            <p>Jogo indie de fantasia acolhedora em desenvolvimento com Godot. Exploração, coleta, plantio e criaturas fazem parte do projeto em evolução.</p>
-                            <div class="project-tech"><span>Godot</span><span>GDScript</span><span>Game Design</span></div>
-                            <div class="project-actions"><a class="btn btn-secondary" href="https://github.com/HelioConde/Slime-Harvest" target="_blank" rel="noopener noreferrer">Acompanhar desenvolvimento</a></div>
-                        </div>
-                    </article>
-                    <article class="project-card reveal delay-1">
-                        <div class="project-content">
-                            <span class="project-tag">Protótipo em desenvolvimento</span>
-                            <h3>Re:Dream</h3>
-                            <p>Projeto de jogo web multiplayer 2D de ação e plataformas, ainda em desenvolvimento.</p>
-                            <div class="project-tech"><span>React</span><span>WebSocket</span><span>JavaScript</span></div>
-                            <div class="project-actions"><a class="btn btn-secondary" href="https://github.com/HelioConde/Re-Dream" target="_blank" rel="noopener noreferrer">Ver repositório</a></div>
-                        </div>
-                    </article>
-                    <article class="project-card reveal delay-2" id="formacao">
-                        <div class="project-content">
-                            <span class="project-tag">Formação</span>
-                            <h3>Desenvolvimento Front-End — SENAI</h3>
-                            <div class="certificate-image"><img src="./img/certificado.png" alt="Prévia do certificado de formação em desenvolvimento Front-End" loading="lazy" decoding="async"></div>
-                            <p>Formação técnica em HTML, CSS, JavaScript e fundamentos de desenvolvimento web.</p>
-                            <div class="project-actions"><a class="btn btn-secondary" href="https://helioconde.github.io/portfolio/certificado/certificado_frente.pdf" target="_blank" rel="noopener noreferrer">Ver certificado</a></div>
-                        </div>
-                    </article>
+                    <aside class="card highlight reveal delay-1">
+                        <h3>O que valorizo</h3>
+                        <ul>
+                            <li>Experiência de uso clara e acessível</li>
+                            <li>Interfaces responsivas e funcionais</li>
+                            <li>Integração de front-end com dados e APIs</li>
+                            <li>Melhoria contínua e documentação</li>
+                        </ul>
+                    </aside>
+                </div>
+                <div class="education-strip reveal" id="formacao">
+                    <img src="./img/certificado.png" alt="Prévia do certificado de Desenvolvimento Front-End" loading="lazy" decoding="async" />
+                    <div><span class="section-kicker">Formação</span><h3>Desenvolvimento Front-End — SENAI</h3><p>Estudos em HTML, CSS, JavaScript e fundamentos de desenvolvimento web.</p></div>
+                    <a class="btn btn-secondary" href="https://helioconde.github.io/portfolio/certificado/certificado_frente.pdf" target="_blank" rel="noopener noreferrer">Ver certificado <span aria-hidden="true">↗</span></a>
                 </div>
             </div>
         </section>
@@ -338,7 +265,7 @@
     <footer class="site-footer">
         <div class="container footer-wrapper">
             <span>© <span id="current-year"></span> Hélio Conde</span>
-            <span>Desenvolvedor Front-End Júnior</span>
+            <span>Projetos, experimentos e aprendizado contínuo</span>
         </div>
     </footer>
 
