@@ -13,6 +13,7 @@ const shots = [
   ['destaque', 'Projeto principal'],
   ['contato', 'Contato'],
   ['filtro-jogos', 'Filtro de jogos'],
+  ['preview-modal', 'Visualização ampliada'],
   ['menu-mobile', 'Menu mobile aberto'],
 ];
 const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({
@@ -37,7 +38,7 @@ for (const viewport of viewports) {
     if (metrics.pageErrors.length) problems.push(metrics.pageErrors.length + ' erros de JavaScript');
     if (metrics.consoleErrors?.length) problems.push(metrics.consoleErrors.length + ' erros no console');
   }
-  const expected = viewport.startsWith('mobile-') ? 8 : 7;
+  const expected = viewport.startsWith('mobile-') ? 9 : 8;
   if (imgs.length < expected) problems.push((expected - imgs.length) + ' capturas ausentes');
   const result = problems.length ? 'REVISAR' : 'OK';
   summaries.push({ viewport, result, images: imgs.length, problems, metrics });
