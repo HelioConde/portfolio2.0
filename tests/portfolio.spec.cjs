@@ -103,3 +103,52 @@ test('published project screenshots are real assets and load correctly', async (
   await expect(page.locator('a[href="https://helioconde.github.io/Re-Dream/"]')).toHaveCount(1);
   await expect(page.locator('a[href="https://helioconde.github.io/babyOnScreen/web/"]')).toHaveCount(1);
 });
+
+
+test('project screenshots are complete, captions do not obscure them and can be enlarged', async ({ page }) => {
+  await page.goto('/');
+  const thumbnails = page.locator('.preview-trigger');
+  await expect(thumbnails).toHaveCount(6);
+  const first = thumbnails.first();
+  await expect(first).toHaveAttribute('href', /base-studio-pizzas\.jpg$/);
+
+  const presentation = await first.evaluate((link) => {
+    const img = link.querySelector('img');
+    const caption = link.closest('.project-image').querySelector('.screen-note');
+    return {
+      fit: getComputedStyle(img).objectFit,
+      captionPosition: getComputedStyle(caption).position,
+      clickable: link.getAttribute('aria-label'),
+    };
+  });
+  expect(presentation.fit).toBe('contain');
+  expect(presentation.captionPosition).toBe('static');
+  expect(presentation.clickable).toMatch(/ampliar/i);
+
+  await first.click();
+  const dialog = page.locator('#project-preview-dialog');
+  await expect(dialog).toBeVisible();
+  await expect(page.locator('#preview-dialog-title')).toHaveText('Base Studio Pizzas');
+  await expect(page.locator('#preview-dialog-image')).toHaveAttribute('src', /base-studio-pizzas\.jpg$/);
+  await expect(page.locator('#preview-original')).toHaveAttribute('href', /base-studio-pizzas\.jpg$/);
+  await expect(page.locator('#preview-counter')).toHaveText('1 de 6');
+  await page.getByRole('button', { name: 'Visualizar próximo projeto' }).click();
+  await expect(page.locator('#preview-dialog-title')).toHaveText('PlayWithEliteItem');
+  await page.keyboard.press('ArrowLeft');
+  await expect(page.locator('#preview-dialog-title')).toHaveText('Base Studio Pizzas');
+  await page.keyboard.press('Escape');
+  await expect(dialog).toBeHidden();
+  await expect(page.locator('body')).not.toHaveClass(/preview-open/);
+  await expect(first).toBeFocused();
+});
+
+test('filtered preview navigation only shows the chosen category', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Jogos', exact: true }).click();
+  await page.locator('.project-card:not([hidden]) .preview-trigger').first().click();
+  await expect(page.locator('#preview-counter')).toHaveText('1 de 2');
+  await page.getByRole('button', { name: 'Visualizar próximo projeto' }).click();
+  await expect(page.locator('#preview-dialog-title')).toHaveText('Re:Dream');
+  await page.getByRole('button', { name: 'Fechar visualização' }).click();
+  await expect(page.locator('#project-preview-dialog')).toBeHidden();
+});
