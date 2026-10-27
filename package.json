@@ -4,9 +4,12 @@
   "version": "2.1.0",
   "description": "Portfolio estatico com validacao automatizada de navegacao, responsividade e acessibilidade",
   "scripts": {
-    "test:e2e": "playwright test",
+    "test:e2e": "playwright test tests/portfolio.spec.cjs",
     "test:e2e:headed": "playwright test --headed",
-    "test:e2e:report": "playwright show-report"
+    "test:e2e:report": "playwright show-report",
+    "screenshots": "playwright test tests/screenshots.spec.cjs",
+    "screenshots:report": "node scripts/build-visual-report.cjs",
+    "test:all": "npm run test:e2e && npm run screenshots && npm run screenshots:report"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0"
