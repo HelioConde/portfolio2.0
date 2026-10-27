@@ -74,3 +74,31 @@ test('reduced-motion users see content without reveal animations', async ({ page
   const opacity = await page.locator('.reveal').first().evaluate((el) => getComputedStyle(el).opacity);
   expect(opacity).toBe('1');
 });
+
+
+test('published project screenshots are real assets and load correctly', async ({ page }) => {
+  await page.goto('/');
+  const assets = [
+    'base-studio-pizzas.jpg',
+    'ofertamatica.jpg',
+    'redream.jpg',
+    'baby-on-screen.jpg',
+    'slimekeepers-menu.png'
+  ];
+  for (const asset of assets) {
+    const img = page.locator('img[src$="' + asset + '"]');
+    await expect(img, 'Expected asset ' + asset).toHaveCount(1);
+    const width = await img.evaluate(async element => {
+      element.loading = 'eager';
+      try { await element.decode(); } catch (_) {}
+      return element.naturalWidth;
+    });
+    expect(width, 'Broken asset: ' + asset).toBeGreaterThan(200);
+  }
+  await expect(page.locator('#project-slime').locator('..').locator('.project-tag'))
+    .toContainText('Em desenvolvimento');
+  await expect(page.locator('img[src$="slimekeepers-menu.png"]'))
+    .toHaveAttribute('alt', /não é uma captura de gameplay/);
+  await expect(page.locator('a[href="https://helioconde.github.io/Re-Dream/"]')).toHaveCount(1);
+  await expect(page.locator('a[href="https://helioconde.github.io/babyOnScreen/web/"]')).toHaveCount(1);
+});
