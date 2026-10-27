@@ -18,7 +18,7 @@ test('capturar layout, estados e diagnostico visual', async ({ page }, testInfo)
   await page.emulateMedia({ reducedMotion: 'reduce' });
   const pageErrors = [];
   page.on('pageerror', error => pageErrors.push(error.message));
-  await page.goto('/', { waitUntil: 'networkidle' });
+  await page.goto(process.env.SCREENSHOT_URL || '/', { waitUntil: 'networkidle' });
   await page.evaluate(async () => {
     await document.fonts.ready;
     await Promise.all(Array.from(document.images, img => {
@@ -95,6 +95,7 @@ test('capturar layout, estados e diagnostico visual', async ({ page }, testInfo)
     };
   });
   metrics.project = viewport;
+  metrics.source = process.env.SCREENSHOT_URL || 'http://127.0.0.1:4173/';
   metrics.pageErrors = pageErrors;
 
   const metricsPath = path.join(REPORT_ROOT, 'dados');
