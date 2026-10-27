@@ -6,6 +6,7 @@ const REPORT_ROOT = path.join(process.cwd(), 'visual-reports');
 const TARGETS = [
   ['pagina-inteira', 'body'],
   ['inicio', '#home'],
+  ['primeira-dobra', 'html'],
   ['projetos', '#projetos'],
   ['destaque', '.project-card.featured'],
   ['contato', '#contato'],
@@ -17,7 +18,17 @@ test('capturar layout, estados e diagnostico visual', async ({ page }, testInfo)
   // Capture stable frames, independent of animations or scroll position.
   await page.emulateMedia({ reducedMotion: 'reduce' });
   const pageErrors = [];
+  const consoleErrors = [];
+  const failedRequests = [];
   page.on('pageerror', error => pageErrors.push(error.message));
+  page.on('console', message => {
+    if (message.type() === 'error') consoleErrors.push(message.text());
+  });
+  page.on('requestfailed', request => {
+    if (request.url().startsWith('http')) {
+      failedRequests.push({ url: request.url(), error: request.failure()?.errorText || 'unknown' });
+    }
+  });
   await page.goto(process.env.SCREENSHOT_URL || '/', { waitUntil: 'networkidle' });
   await page.evaluate(async () => {
     await document.fonts.ready;
@@ -41,6 +52,9 @@ test('capturar layout, estados e diagnostico visual', async ({ page }, testInfo)
     const file = path.join(folder, name + '.png');
     if (name === 'pagina-inteira') {
       await page.screenshot({ path: file, fullPage: true, animations: 'disabled', timeout: 20000 });
+    } else if (name === 'primeira-dobra') {
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.screenshot({ path: file, animations: 'disabled', timeout: 20000 });
     } else {
       await page.locator(selector).first().screenshot({ path: file, animations: 'disabled', timeout: 20000 });
     }
@@ -83,6 +97,19 @@ test('capturar layout, estados e diagnostico visual', async ({ page }, testInfo)
       left: Math.round(el.getBoundingClientRect().left),
       right: Math.round(el.getBoundingClientRect().right),
     }));
+    const clippedText = Array.from(document.querySelectorAll(
+      'h1, h2, h3, p, .btn, .project-tag, .site-nav a'
+    )).filter(el => {
+      const style = getComputedStyle(el);
+      return style.display !== 'none' && style.visibility !== 'hidden' && el.getClientRects().length &&
+        (el.scrollWidth > el.clientWidth + 3 || el.scrollHeight > el.clientHeight + 3);
+    }).map(el => ({
+      node: el.tagName.toLowerCase(),
+      text: (el.textContent || '').trim().slice(0, 80),
+      css: String(el.className || '').slice(0, 80),
+      client: [el.clientWidth, el.clientHeight],
+      scroll: [el.scrollWidth, el.scrollHeight],
+    }));
     const brokenImages = Array.from(document.images)
       .filter(img => !img.complete || img.naturalWidth === 0)
       .map(img => img.getAttribute('src'));
@@ -93,6 +120,7 @@ test('capturar layout, estados e diagnostico visual', async ({ page }, testInfo)
       documentHeight: document.documentElement.scrollHeight,
       horizontalOverflow: document.documentElement.scrollWidth > viewportWidth + 1,
       outOfViewport,
+      clippedText,
       brokenImages,
       primaryHeadingCount: document.querySelectorAll('h1').length,
       projectCount: document.querySelectorAll('.project-card[data-category]').length,
@@ -101,6 +129,8 @@ test('capturar layout, estados e diagnostico visual', async ({ page }, testInfo)
   metrics.project = viewport;
   metrics.source = process.env.SCREENSHOT_URL || 'http://127.0.0.1:4173/';
   metrics.pageErrors = pageErrors;
+  metrics.consoleErrors = consoleErrors;
+  metrics.failedRequests = failedRequests;
 
   const metricsPath = path.join(REPORT_ROOT, 'dados');
   fs.mkdirSync(metricsPath, { recursive: true });
@@ -108,6 +138,8 @@ test('capturar layout, estados e diagnostico visual', async ({ page }, testInfo)
 
   expect(metrics.horizontalOverflow, 'Pagina nao deve ter rolagem horizontal').toBe(false);
   expect(metrics.outOfViewport, 'Elementos importantes devem caber na viewport').toEqual([]);
+  expect(metrics.clippedText, 'Textos nao devem estar cortados').toEqual([]);
   expect(metrics.brokenImages, 'Todas as imagens devem carregar').toEqual([]);
   expect(metrics.pageErrors, 'Nao deve haver erros de JavaScript').toEqual([]);
+  expect(metrics.consoleErrors, 'Nao deve haver erros no console').toEqual([]);
 });
