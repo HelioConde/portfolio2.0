@@ -132,6 +132,21 @@ test('project screenshots are complete, captions do not obscure them and can be 
   await expect(page.locator('#preview-dialog-image')).toHaveAttribute('src', /base-studio-pizzas\.jpg$/);
   await expect(page.locator('#preview-original')).toHaveAttribute('href', /base-studio-pizzas\.jpg$/);
   await expect(page.locator('#preview-counter')).toHaveText('1 de 6');
+  const viewerGeometry = await page.locator('#preview-dialog-image').evaluate(img => {
+    const stage = img.closest('.preview-stage').getBoundingClientRect();
+    const image = img.getBoundingClientRect();
+    const footer = img.closest('.preview-shell').querySelector('.preview-bottom').getBoundingClientRect();
+    return {
+      imageTop: image.top,
+      imageBottom: image.bottom,
+      stageTop: stage.top,
+      stageBottom: stage.bottom,
+      footerTop: footer.top,
+    };
+  });
+  expect(viewerGeometry.imageTop).toBeGreaterThanOrEqual(viewerGeometry.stageTop - 1);
+  expect(viewerGeometry.imageBottom).toBeLessThanOrEqual(viewerGeometry.stageBottom + 1);
+  expect(viewerGeometry.stageBottom).toBeLessThanOrEqual(viewerGeometry.footerTop + 1);
   await page.getByRole('button', { name: 'Visualizar próximo projeto' }).click();
   await expect(page.locator('#preview-dialog-title')).toHaveText('PlayWithEliteItem');
   await page.keyboard.press('ArrowLeft');
