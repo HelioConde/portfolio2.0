@@ -21,12 +21,15 @@ test('capturar layout, estados e diagnostico visual', async ({ page }, testInfo)
   await page.goto(process.env.SCREENSHOT_URL || '/', { waitUntil: 'networkidle' });
   await page.evaluate(async () => {
     await document.fonts.ready;
-    await Promise.all(Array.from(document.images, img => {
-      if (img.complete) return Promise.resolve();
-      return new Promise(resolve => {
-        img.addEventListener('load', resolve, { once: true });
-        img.addEventListener('error', resolve, { once: true });
-      });
+    // Screenshots must include images initially below the fold.
+    // Eager loading avoids waiting forever for offscreen lazy-loaded images.
+    await Promise.all(Array.from(document.images, async (img) => {
+      img.loading = 'eager';
+      try {
+        await img.decode();
+      } catch (_) {
+        // Broken files will be reported in the metrics below.
+      }
     }));
   });
 
