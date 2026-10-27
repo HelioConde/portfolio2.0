@@ -35,6 +35,10 @@ python -m http.server 8000
 
 Acesse `http://localhost:8000`. Também é possível inspecionar o HTML e CSS diretamente; o servidor é recomendado para testar recursos e links de forma semelhante à publicação.
 
+## Previews autênticas dos projetos
+
+As prévias da pizzaria, Ofertamática, Re:Dream e Baby On Screen são capturas reais das versões públicas obtidas via Playwright. Slimekeepers usa **arte do menu** (não gameplay), enquanto PlayWithEliteItem apresenta uma captura real de sua página de publicação no Thunderstore (não gameplay). Veja [origens, atualização e cuidados](docs/PREVIAS_PROJETOS.md).
+
 ## Testes de qualidade
 
 ```bash
