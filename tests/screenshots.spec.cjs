@@ -56,7 +56,12 @@ test('capturar layout, estados e diagnostico visual', async ({ page }, testInfo)
       await page.evaluate(() => window.scrollTo(0, 0));
       await page.screenshot({ path: file, animations: 'disabled', timeout: 20000 });
     } else {
-      await page.locator(selector).first().screenshot({ path: file, animations: 'disabled', timeout: 20000 });
+      await page.locator(selector).first().screenshot({
+        path: file, animations: 'disabled', timeout: 20000,
+        // A section screenshot is taller than one viewport. Do not render the
+        // sticky navigation or skip-link across its middle.
+        style: '.site-header, .skip-link { visibility: hidden !important; }',
+      });
     }
   }
 
@@ -64,6 +69,7 @@ test('capturar layout, estados e diagnostico visual', async ({ page }, testInfo)
   await page.locator('#projetos').screenshot({
     path: path.join(folder, 'filtro-jogos.png'),
     animations: 'disabled',
+    style: '.site-header, .skip-link { visibility: hidden !important; }',
   });
   await page.getByRole('button', { name: 'Todos', exact: true }).click();
 
