@@ -41,3 +41,14 @@ O site continua estático e pode ser publicado no GitHub Pages. O arquivo `sitem
 - [Manual de operação](CAPTURAS_VISUAIS.md).
 
 > Não marcar validação visual como concluída até abrir as imagens geradas pelo workflow e corrigir problemas encontrados.
+
+## Auditoria visual realizada em 27/10/2026
+
+- Workflow PR #1: **PASS** — testes funcionais + capturas em 360, 390, 768, 1024 e 1440 px.
+- Primeira coleta: 37 PNGs; **0 alertas automáticos** para JS, console, imagens quebradas, overflow, texto recortado e elementos fora da tela.
+- Capturas revelaram problemas visuais não detectados pelos asserts: apresentação mobile muito longa, último card órfão no desktop e cabeçalho sobreposto em screenshots de seções compridas.
+- Correções aplicadas na branch `audit/playwright-visual-2026-10-27`: hero mais compacto, grid reequilibrado, screenshot de seções sem elementos flutuantes.
+- Segunda coleta: 37 PNGs; **0 alertas automáticos**. Altura da página a 360px foi de **8277 para 7966 px**; a 1440px, de **5602 para 5368 px**.
+- Última verificação: primeira dobra capturada antes das seções e aprimoramento do banner horizontal.
+
+A auditoria visual foi baseada em screenshots reais do runner, não em estimativa. Métricas de Lighthouse e auditoria WCAG completa continuam independentes.
