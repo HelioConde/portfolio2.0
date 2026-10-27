@@ -10,6 +10,9 @@
     <meta name="keywords"
         content="Hélio Conde, desenvolvedor front-end júnior, React, JavaScript, HTML, CSS, portfólio" />
     <meta name="author" content="Hélio Conde" />
+    <meta name="theme-color" content="#070b1a" />
+    <meta property="og:url" content="https://helioconde.github.io/portfolio2.0/" />
+    <link rel="canonical" href="https://helioconde.github.io/portfolio2.0/" />
     <meta property="og:title" content="Hélio Conde | Desenvolvedor Front-End Júnior" />
     <meta property="og:description"
         content="Projetos reais com foco em interfaces modernas, responsividade e integração com APIs." />
@@ -21,6 +24,7 @@
 </head>
 
 <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <div class="bg-orb orb-1"></div>
     <div class="bg-orb orb-2"></div>
     <div class="bg-grid"></div>
@@ -28,7 +32,7 @@
     <header class="site-header">
         <div class="container nav-wrapper">
             <a class="brand" href="#home" aria-label="Ir para o início">
-                <img src="./img/logo.png" alt="Logo Hélio Conde" />
+                <img src="./img/logo.png" alt="" />
                 <span>Hélio Conde</span>
             </a>
 
@@ -39,7 +43,7 @@
                 <span></span>
             </button>
 
-            <nav class="site-nav" id="site-menu">
+            <nav class="site-nav" id="site-menu" aria-label="Navegação principal">
                 <a href="#sobre">Sobre</a>
                 <a href="#stack">Tecnologias</a>
                 <a href="#projetos">Projetos</a>
@@ -48,7 +52,7 @@
         </div>
     </header>
 
-    <main>
+    <main id="conteudo">
         <section class="hero section" id="home">
             <div class="container hero-grid">
                 <div class="hero-content reveal">
@@ -198,7 +202,7 @@
                     <article class="project-card featured reveal">
 
                         <div class="project-image">
-                            <img src="./img/pizzaria-preview.png" alt="Projeto Base Studio Pizzas">
+                            <img src="./img/pizzaria-preview.png" alt="Prévia da aplicação Base Studio Pizzas" loading="lazy" decoding="async">
                         </div>
 
                         <div class="project-content">
@@ -227,10 +231,10 @@
 
                             <div class="project-actions">
                                 <a class="btn btn-primary" href="https://github.com/HelioConde/site-pizzaria"
-                                    target="_blank">Ver código</a>
+                                    target="_blank" rel="noopener noreferrer">Ver código</a>
 
                                 <a class="btn btn-secondary" href="https://helioconde.github.io/site-pizzaria/"
-                                    target="_blank">Ver projeto</a>
+                                    target="_blank" rel="noopener noreferrer">Ver projeto</a>
                             </div>
                         </div>
 
@@ -264,35 +268,43 @@
                     </article>
 
                     <article class="project-card reveal delay-2">
-                        <section class="project-content" id="formacao">
-                            <div class="container ">
-                                <div class="certificate-image">
-                                    <img src="./img/certificado.png" alt="Certificado de Formação">
-                                </div>
-
-                                <div class="project-content">
-                                    <span class="project-tag">Formação</span>
-
-                                    <h3>Formação e certificações.</h3>
-
-                                    <p>
-                                        Certificação em Desenvolvimento Front-End pelo
-                                        <strong>SENAI</strong>, com foco em HTML, CSS, JavaScript
-                                        e fundamentos de desenvolvimento web.
-                                    </p>
-
-                                    <ul>
-                                        <li>Desenvolvimento Front-End</li>
-                                    </ul>
-
-                                    <div class="project-actions">
-
-                                        <a class="btn btn-primary"
-                                            href="https://helioconde.github.io/portfolio/certificado/certificado_frente.pdf"
-                                            target="_blank">Ver Certificado</a>
-                                    </div>
-                                </div>
-                        </section>
+                        <div class="project-content">
+                            <span class="project-tag">Ferramenta para varejo</span>
+                            <h3>Ofertamática</h3>
+                            <p>Gerador de cartazes promocionais com formatos de impressão e recursos de automação para o varejo.</p>
+                            <div class="project-tech"><span>JavaScript</span><span>UI/UX</span><span>Automação</span></div>
+                            <div class="project-actions">
+                                <a class="btn btn-primary" href="https://ofertamatica.com.br/" target="_blank" rel="noopener noreferrer">Abrir ferramenta</a>
+                                <a class="btn btn-secondary" href="https://github.com/HelioConde/ofertamatica" target="_blank" rel="noopener noreferrer">Ver código</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="project-card reveal">
+                        <div class="project-content">
+                            <span class="project-tag">Em desenvolvimento</span>
+                            <h3>Slimekeepers: Lost Valley</h3>
+                            <p>Jogo indie de fantasia acolhedora em desenvolvimento com Godot. Exploração, coleta, plantio e criaturas fazem parte do projeto em evolução.</p>
+                            <div class="project-tech"><span>Godot</span><span>GDScript</span><span>Game Design</span></div>
+                            <div class="project-actions"><a class="btn btn-secondary" href="https://github.com/HelioConde/Slime-Harvest" target="_blank" rel="noopener noreferrer">Acompanhar desenvolvimento</a></div>
+                        </div>
+                    </article>
+                    <article class="project-card reveal delay-1">
+                        <div class="project-content">
+                            <span class="project-tag">Protótipo em desenvolvimento</span>
+                            <h3>Re:Dream</h3>
+                            <p>Projeto de jogo web multiplayer 2D de ação e plataformas, ainda em desenvolvimento.</p>
+                            <div class="project-tech"><span>React</span><span>WebSocket</span><span>JavaScript</span></div>
+                            <div class="project-actions"><a class="btn btn-secondary" href="https://github.com/HelioConde/Re-Dream" target="_blank" rel="noopener noreferrer">Ver repositório</a></div>
+                        </div>
+                    </article>
+                    <article class="project-card reveal delay-2" id="formacao">
+                        <div class="project-content">
+                            <span class="project-tag">Formação</span>
+                            <h3>Desenvolvimento Front-End — SENAI</h3>
+                            <div class="certificate-image"><img src="./img/certificado.png" alt="Prévia do certificado de formação em desenvolvimento Front-End" loading="lazy" decoding="async"></div>
+                            <p>Formação técnica em HTML, CSS, JavaScript e fundamentos de desenvolvimento web.</p>
+                            <div class="project-actions"><a class="btn btn-secondary" href="https://helioconde.github.io/portfolio/certificado/certificado_frente.pdf" target="_blank" rel="noopener noreferrer">Ver certificado</a></div>
+                        </div>
                     </article>
                 </div>
             </div>
