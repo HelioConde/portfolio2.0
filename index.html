@@ -88,17 +88,17 @@
                 <div class="section-heading reveal">
                     <span class="section-kicker">Trabalhos selecionados</span>
                     <h2 id="projects-title">Projetos que você pode conhecer por dentro.</h2>
-                    <p>Do sistema de pedidos à criação de jogos: código, decisões técnicas e trabalhos em diferentes estágios de evolução.</p>
+                    <p>Aplicações, ferramentas e jogos criados na prática. Explore cada projeto e acompanhe sua evolução.</p>
                 </div>
                 <div class="project-filters" role="group" aria-label="Filtrar projetos por tipo">
                     <button type="button" class="filter-btn is-active" data-filter="todos" aria-pressed="true">Todos</button>
                     <button type="button" class="filter-btn" data-filter="web" aria-pressed="false">Web</button>
                     <button type="button" class="filter-btn" data-filter="games" aria-pressed="false">Jogos</button>
                     <button type="button" class="filter-btn" data-filter="mods" aria-pressed="false">Modding</button>
-                    <button type="button" class="filter-btn" data-filter="apps" aria-pressed="false">Aplicativos</button>
+                    <button type="button" class="filter-btn" data-filter="apps" aria-pressed="false" title="Aplicativos">Apps</button>
                 </div>
                 <p class="project-count" id="project-count" role="status" aria-live="polite">6 projetos</p>
-                <p class="preview-help">Clique na imagem de um projeto para visualizar a captura inteira.</p>
+                <p class="preview-help">Clique em uma prévia para ampliá-la sem cortes.</p>
                 <div class="projects-grid" id="projects-grid">
                     <article class="project-card featured reveal" data-category="web" aria-labelledby="project-pizzaria">
                         <div class="project-image project-screenshot">
@@ -106,17 +106,17 @@
                                 <img src="./img/projects/base-studio-pizzas.jpg" alt="Captura real da página inicial do Base Studio Pizzas, com apresentação do sistema de pedidos" width="1280" height="800" loading="lazy" decoding="async" />
                             </a>
                             <div class="project-image-caption">
-                                <span class="screen-note">Captura do site publicado</span>
-                                <span class="preview-callout" aria-hidden="true">Ampliar imagem ↗</span>
+                                <span class="screen-note">Site publicado</span>
+                                <span class="preview-callout" aria-hidden="true">Ampliar ↗</span>
                             </div>
                         </div>
                         <div class="project-content">
                             <span class="project-tag">Aplicação concluída</span>
                             <h3 id="project-pizzaria">Base Studio Pizzas</h3>
-                            <p>Aplicação de delivery com cardápio, carrinho, pedidos e painéis de acompanhamento. Projeto que reúne interface, dados e fluxos de usuários.</p>
+                            <p>Sistema de pedidos para pizzaria, com cardápio, carrinho e acompanhamento de pedidos.</p>
                             <div class="project-tech"><span>React</span><span>JavaScript</span><span>Supabase</span></div>
                             <div class="project-actions">
-                                <a class="btn btn-primary" href="https://helioconde.github.io/site-pizzaria/" target="_blank" rel="noopener noreferrer">Ver projeto <span aria-hidden="true">↗</span></a>
+                                <a class="btn btn-primary" href="https://helioconde.github.io/site-pizzaria/" target="_blank" rel="noopener noreferrer" aria-label="Abrir demonstração do Base Studio Pizzas">Ver projeto <span aria-hidden="true">↗</span></a>
                                 <a class="btn btn-secondary" href="https://github.com/HelioConde/site-pizzaria" target="_blank" rel="noopener noreferrer" aria-label="Ver código da Base Studio Pizzas">Código-fonte</a>
                             </div>
                         </div>
@@ -127,16 +127,16 @@
                                 <img src="./img/projects/playwitheliteitem.jpg" alt="Página pública do PlayWithEliteItem no Thunderstore para Risk of Rain 2; não é uma captura de gameplay" width="1280" height="800" loading="lazy" decoding="async" />
                             </a>
                             <div class="project-image-caption">
-                                <span class="screen-note">Página oficial do mod · Thunderstore</span>
-                                <span class="preview-callout" aria-hidden="true">Ampliar imagem ↗</span>
+                                <span class="screen-note">Página do mod</span>
+                                <span class="preview-callout" aria-hidden="true">Ampliar ↗</span>
                             </div>
                         </div>
                         <div class="project-content">
                             <span class="project-tag">Mod de jogo</span>
                             <h3 id="project-elite">PlayWithEliteItem</h3>
-                            <p>Mod para Risk of Rain 2 focado na manipulação de itens elite e na lógica de sistemas internos do jogo.</p>
+                            <p>Mod de Risk of Rain 2 que concede um equipamento elite aleatório ao iniciar a partida.</p>
                             <div class="project-tech"><span>C#</span><span>BepInEx</span><span>Unity</span></div>
-                            <div class="project-actions"><a class="btn btn-primary" href="https://thunderstore.io/c/riskofrain2/p/CONDE/PlayWithEliteItem/" target="_blank" rel="noopener noreferrer">Versão publicada <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="https://github.com/HelioConde/PlayWithEliteItem" target="_blank" rel="noopener noreferrer">Código-fonte</a></div>
+                            <div class="project-actions"><a class="btn btn-primary" href="https://thunderstore.io/c/riskofrain2/p/CONDE/PlayWithEliteItem/" target="_blank" rel="noopener noreferrer" aria-label="Abrir página publicada do PlayWithEliteItem">Versão publicada <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="https://github.com/HelioConde/PlayWithEliteItem" target="_blank" rel="noopener noreferrer" aria-label="Ver código do PlayWithEliteItem">Código-fonte</a></div>
                         </div>
                     </article>
                     <article class="project-card reveal" data-category="web" aria-labelledby="project-ofertamatica">
@@ -145,17 +145,17 @@
                                 <img src="./img/projects/ofertamatica.jpg" alt="Captura real da Ofertamática mostrando o seletor de formatos de cartazes" width="1280" height="800" loading="lazy" decoding="async" />
                             </a>
                             <div class="project-image-caption">
-                                <span class="screen-note">Captura da ferramenta web</span>
-                                <span class="preview-callout" aria-hidden="true">Ampliar imagem ↗</span>
+                                <span class="screen-note">Ferramenta web</span>
+                                <span class="preview-callout" aria-hidden="true">Ampliar ↗</span>
                             </div>
                         </div>
                         <div class="project-content">
                             <span class="project-tag">Ferramenta em evolução</span>
                             <h3 id="project-ofertamatica">Ofertamática</h3>
-                            <p>Criação de cartazes promocionais para o varejo, com formatos de impressão e automação da preparação de ofertas.</p>
+                            <p>Ferramenta para criar e imprimir cartazes promocionais em diferentes formatos.</p>
                             <div class="project-tech"><span>JavaScript</span><span>UI/UX</span><span>Automação</span></div>
                             <div class="project-actions">
-                                <a class="btn btn-primary" href="https://ofertamatica.com.br/" target="_blank" rel="noopener noreferrer">Abrir ferramenta <span aria-hidden="true">↗</span></a>
+                                <a class="btn btn-primary" href="https://ofertamatica.com.br/" target="_blank" rel="noopener noreferrer" aria-label="Abrir a ferramenta Ofertamática">Abrir ferramenta <span aria-hidden="true">↗</span></a>
                                 <a class="btn btn-secondary" href="https://github.com/HelioConde/ofertamatica" target="_blank" rel="noopener noreferrer" aria-label="Ver código da Ofertamática">Código-fonte</a>
                             </div>
                         </div>
@@ -166,16 +166,16 @@
                                 <img src="./img/projects/slimekeepers-menu.png" alt="Arte utilizada no menu principal do jogo Slimekeepers: Lost Valley; não é uma captura de gameplay" loading="lazy" decoding="async" />
                             </a>
                             <div class="project-image-caption">
-                                <span class="screen-note">Arte original do menu · em desenvolvimento</span>
-                                <span class="preview-callout" aria-hidden="true">Ampliar imagem ↗</span>
+                                <span class="screen-note">Arte do menu · não é gameplay</span>
+                                <span class="preview-callout" aria-hidden="true">Ampliar ↗</span>
                             </div>
                         </div>
                         <div class="project-content">
                             <span class="project-tag project-tag-progress">Em desenvolvimento</span>
                             <h3 id="project-slime">Slimekeepers: Lost Valley</h3>
-                            <p>Jogo indie de exploração, cultivo e criaturas em um mundo de fantasia acolhedora. Ainda em desenvolvimento no Godot.</p>
+                            <p>Aventura cozy fantasy com exploração, cultivo e criaturas, criada no Godot.</p>
                             <div class="project-tech"><span>Godot</span><span>GDScript</span><span>Pixel Art</span></div>
-                            <div class="project-actions"><a class="btn btn-secondary" href="https://github.com/HelioConde/Slime-Harvest" target="_blank" rel="noopener noreferrer">Acompanhar projeto <span aria-hidden="true">↗</span></a></div>
+                            <div class="project-actions"><a class="btn btn-secondary" href="https://github.com/HelioConde/Slime-Harvest" target="_blank" rel="noopener noreferrer" aria-label="Ver desenvolvimento do Slimekeepers">Acompanhar projeto <span aria-hidden="true">↗</span></a></div>
                         </div>
                     </article>
                     <article class="project-card reveal delay-2" data-category="games" aria-labelledby="project-redream">
@@ -185,15 +185,15 @@
                             </a>
                             <div class="project-image-caption">
                                 <span class="screen-note">Tela inicial · pré-alfa</span>
-                                <span class="preview-callout" aria-hidden="true">Ampliar imagem ↗</span>
+                                <span class="preview-callout" aria-hidden="true">Ampliar ↗</span>
                             </div>
                         </div>
                         <div class="project-content">
                             <span class="project-tag project-tag-progress">Protótipo em desenvolvimento</span>
                             <h3 id="project-redream">Re:Dream</h3>
-                            <p>Experimento de jogo web multiplayer 2D de ação e plataformas, com desenvolvimento e testes em andamento.</p>
+                            <p>Jogo web 2D de ação e plataformas, com recursos multiplayer em desenvolvimento.</p>
                             <div class="project-tech"><span>React</span><span>WebSocket</span><span>2D</span></div>
-                            <div class="project-actions"><a class="btn btn-primary" href="https://helioconde.github.io/Re-Dream/" target="_blank" rel="noopener noreferrer">Abrir pré-alfa <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="https://github.com/HelioConde/Re-Dream" target="_blank" rel="noopener noreferrer">Código-fonte</a></div>
+                            <div class="project-actions"><a class="btn btn-primary" href="https://helioconde.github.io/Re-Dream/" target="_blank" rel="noopener noreferrer" aria-label="Abrir versão pré-alfa do Re:Dream">Abrir pré-alfa <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="https://github.com/HelioConde/Re-Dream" target="_blank" rel="noopener noreferrer" aria-label="Ver código do Re:Dream">Código-fonte</a></div>
                         </div>
                     </article>
                     <article class="project-card reveal" data-category="apps" aria-labelledby="project-baby">
@@ -202,16 +202,16 @@
                                 <img src="./img/projects/baby-on-screen.jpg" alt="Captura real da versão web Baby On Screen, mostrando a apresentação da personagem virtual" width="1280" height="800" loading="lazy" decoding="async" />
                             </a>
                             <div class="project-image-caption">
-                                <span class="screen-note">Captura da versão web</span>
-                                <span class="preview-callout" aria-hidden="true">Ampliar imagem ↗</span>
+                                <span class="screen-note">Versão web</span>
+                                <span class="preview-callout" aria-hidden="true">Ampliar ↗</span>
                             </div>
                         </div>
                         <div class="project-content">
                             <span class="project-tag">Aplicativo experimental</span>
                             <h3 id="project-baby">Baby On Screen</h3>
-                            <p>Mascote virtual para a tela do computador e experiências no navegador, em diferentes versões do projeto.</p>
+                            <p>Mascote virtual interativo para computador, com uma versão experimental para navegador.</p>
                             <div class="project-tech"><span>Desktop</span><span>Web</span><span>Interação</span></div>
-                            <div class="project-actions"><a class="btn btn-primary" href="https://helioconde.github.io/babyOnScreen/web/" target="_blank" rel="noopener noreferrer">Experimentar web <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="https://github.com/HelioConde/babyOnScreen" target="_blank" rel="noopener noreferrer">Código-fonte</a></div>
+                            <div class="project-actions"><a class="btn btn-primary" href="https://helioconde.github.io/babyOnScreen/web/" target="_blank" rel="noopener noreferrer" aria-label="Abrir versão web do Baby On Screen">Experimentar web <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="https://github.com/HelioConde/babyOnScreen" target="_blank" rel="noopener noreferrer" aria-label="Ver código do Baby On Screen">Código-fonte</a></div>
                         </div>
                     </article>
                 </div>
