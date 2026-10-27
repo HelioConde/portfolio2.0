@@ -8,6 +8,7 @@ module.exports = defineConfig({
   workers: process.env.CI ? 2 : undefined,
   reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'list',
   use: {
+    ...(process.env.CI ? { channel: 'chrome' } : {}),
     baseURL: 'http://127.0.0.1:4173',
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
