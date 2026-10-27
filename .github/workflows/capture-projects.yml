@@ -53,7 +53,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add img/projects/*.jpg
+          git add img/projects/*.jpg img/projects/*.png
           if ! git diff --cached --quiet; then
             git commit -m "assets: atualiza capturas reais dos projetos"
             git push
