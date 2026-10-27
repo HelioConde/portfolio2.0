@@ -5,8 +5,8 @@ const path = require('node:path');
 const REPORT_ROOT = path.join(process.cwd(), 'visual-reports');
 const TARGETS = [
   ['pagina-inteira', 'body'],
-  ['inicio', '#home'],
   ['primeira-dobra', 'html'],
+  ['inicio', '#home'],
   ['projetos', '#projetos'],
   ['destaque', '.project-card.featured'],
   ['contato', '#contato'],
@@ -53,7 +53,10 @@ test('capturar layout, estados e diagnostico visual', async ({ page }, testInfo)
     if (name === 'pagina-inteira') {
       await page.screenshot({ path: file, fullPage: true, animations: 'disabled', timeout: 20000 });
     } else if (name === 'primeira-dobra') {
-      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.evaluate(async () => {
+        window.scrollTo(0, 0);
+        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      });
       await page.screenshot({ path: file, animations: 'disabled', timeout: 20000 });
     } else {
       await page.locator(selector).first().screenshot({
