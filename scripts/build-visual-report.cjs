@@ -34,7 +34,8 @@ for (const viewport of viewports) {
     if (metrics.brokenImages.length) problems.push(metrics.brokenImages.length + ' imagens não carregadas');
     if (metrics.pageErrors.length) problems.push(metrics.pageErrors.length + ' erros de JavaScript');
   }
-  if (!imgs.length) problems.push('Nenhuma captura');
+  const expected = viewport.startsWith('mobile-') ? 7 : 6;
+  if (imgs.length < expected) problems.push((expected - imgs.length) + ' capturas ausentes');
   const result = problems.length ? 'REVISAR' : 'OK';
   summaries.push({ viewport, result, images: imgs.length, problems, metrics });
 
