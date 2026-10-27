@@ -68,6 +68,18 @@ test('capturar layout, estados e diagnostico visual', async ({ page }, testInfo)
     }
   }
 
+  // Preview should be readable and should not inherit the thumbnail crop.
+  await page.locator('.preview-trigger').first().click();
+  await page.locator('#preview-dialog-image').evaluate(async img => {
+    await img.decode();
+  });
+  await page.screenshot({
+    path: path.join(folder, 'preview-modal.png'),
+    animations: 'disabled',
+    timeout: 20000,
+  });
+  await page.getByRole('button', { name: 'Fechar visualização' }).click();
+
   await page.getByRole('button', { name: 'Jogos', exact: true }).click();
   await page.locator('#projetos').screenshot({
     path: path.join(folder, 'filtro-jogos.png'),
@@ -120,6 +132,7 @@ test('capturar layout, estados e diagnostico visual', async ({ page }, testInfo)
       scroll: [el.scrollWidth, el.scrollHeight],
     }));
     const brokenImages = Array.from(document.images)
+      .filter(img => img.hasAttribute('src'))
       .filter(img => !img.complete || img.naturalWidth === 0)
       .map(img => img.getAttribute('src'));
     return {
