@@ -84,7 +84,8 @@ test('published project screenshots are real assets and load correctly', async (
     'ofertamatica.jpg',
     'redream.jpg',
     'baby-on-screen.jpg',
-    'slimekeepers-menu.png'
+    'slimekeepers-forest.png',
+    'slimekeepers-valley.png'
   ];
   for (const asset of assets) {
     const img = page.locator('img[src$="' + asset + '"]');
@@ -98,8 +99,10 @@ test('published project screenshots are real assets and load correctly', async (
   }
   await expect(page.locator('#project-slime').locator('..').locator('.project-tag'))
     .toContainText('Em desenvolvimento');
-  await expect(page.locator('img[src$="slimekeepers-menu.png"]'))
-    .toHaveAttribute('alt', /não é uma captura de gameplay/);
+  await expect(page.locator('img[src$="slimekeepers-forest.png"]'))
+    .toHaveAttribute('alt', /Captura real de gameplay/);
+  await expect(page.locator('a[href="https://github.com/HelioConde/Slimekeepers-Lost-Valley"]')).toHaveCount(1);
+  await expect(page.locator('.project-card[aria-labelledby="project-slime"] .preview-trigger')).toHaveCount(2);
   await expect(page.locator('a[href="https://helioconde.github.io/Re-Dream/"]')).toHaveCount(1);
   await expect(page.locator('a[href="https://helioconde.github.io/babyOnScreen/web/"]')).toHaveCount(1);
 });
@@ -108,7 +111,7 @@ test('published project screenshots are real assets and load correctly', async (
 test('project screenshots are complete, captions do not obscure them and can be enlarged', async ({ page }) => {
   await page.goto('/');
   const thumbnails = page.locator('.preview-trigger');
-  await expect(thumbnails).toHaveCount(6);
+  await expect(thumbnails).toHaveCount(7);
   const first = thumbnails.first();
   await expect(first).toHaveAttribute('href', /base-studio-pizzas\.jpg$/);
 
@@ -131,7 +134,7 @@ test('project screenshots are complete, captions do not obscure them and can be 
   await expect(page.locator('#preview-dialog-title')).toHaveText('Base Studio Pizzas');
   await expect(page.locator('#preview-dialog-image')).toHaveAttribute('src', /base-studio-pizzas\.jpg$/);
   await expect(page.locator('#preview-original')).toHaveAttribute('href', /base-studio-pizzas\.jpg$/);
-  await expect(page.locator('#preview-counter')).toHaveText('1 de 6');
+  await expect(page.locator('#preview-counter')).toHaveText('1 de 7');
   const viewerGeometry = await page.locator('#preview-dialog-image').evaluate(img => {
     const stage = img.closest('.preview-stage').getBoundingClientRect();
     const image = img.getBoundingClientRect();
@@ -161,7 +164,10 @@ test('filtered preview navigation only shows the chosen category', async ({ page
   await page.goto('/');
   await page.getByRole('button', { name: 'Jogos', exact: true }).click();
   await page.locator('.project-card:not([hidden]) .preview-trigger').first().click();
-  await expect(page.locator('#preview-counter')).toHaveText('1 de 2');
+  await expect(page.locator('#preview-counter')).toHaveText('1 de 3');
+  await page.getByRole('button', { name: 'Visualizar próximo projeto' }).click();
+  await expect(page.locator('#preview-dialog-image')).toHaveAttribute('src', /slimekeepers-valley.png$/);
+  await expect(page.locator('#preview-counter')).toHaveText('2 de 3');
   await page.getByRole('button', { name: 'Visualizar próximo projeto' }).click();
   await expect(page.locator('#preview-dialog-title')).toHaveText('Re:Dream');
   await page.getByRole('button', { name: 'Fechar visualização' }).click();

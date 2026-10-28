@@ -20,7 +20,7 @@ O site é estático em HTML, CSS e JavaScript; **não exige npm para ser publica
 | [**Base Studio Pizzas**](https://github.com/HelioConde/site-pizzaria) | Aplicação full-stack de delivery concluída para portfólio |
 | [**Ofertamática**](https://github.com/HelioConde/ofertamatica) | Ferramenta de cartazes promocionais para o varejo |
 | [**Baby On Screen**](https://github.com/HelioConde/babyOnScreen) | Mascote virtual com edições Windows e navegador |
-| [**Slimekeepers: Lost Valley**](https://github.com/HelioConde/Slime-Harvest) | Jogo indie 2D com Godot **em desenvolvimento** |
+| [**Slimekeepers: Lost Valley**](https://github.com/HelioConde/Slimekeepers-Lost-Valley) | Jogo indie 2D com Godot **em desenvolvimento** |
 | [**Re:Dream**](https://github.com/HelioConde/Re-Dream) | Protótipo de jogo multiplayer 2D **em desenvolvimento** |
 
 Esses projetos possuem seus próprios READMEs e diferentes níveis de maturidade.
@@ -37,7 +37,7 @@ Acesse `http://localhost:8000`. Também é possível inspecionar o HTML e CSS di
 
 ## Previews autênticas dos projetos
 
-As prévias da pizzaria, Ofertamática, Re:Dream e Baby On Screen são capturas reais das versões públicas obtidas via Playwright. Slimekeepers usa **arte do menu** (não gameplay), enquanto PlayWithEliteItem apresenta uma captura real de sua página de publicação no Thunderstore (não gameplay). Veja [origens, atualização e cuidados](docs/PREVIAS_PROJETOS.md).
+As prévias da pizzaria, Ofertamática, Re:Dream e Baby On Screen são capturas reais das versões públicas obtidas via Playwright. Slimekeepers usa **capturas reais de gameplay** da floresta e do Vale das Nascentes, enquanto PlayWithEliteItem apresenta uma captura real de sua página de publicação no Thunderstore (não gameplay). Veja [origens, atualização e cuidados](docs/PREVIAS_PROJETOS.md).
 
 ## Testes de qualidade
 
