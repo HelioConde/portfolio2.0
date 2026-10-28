@@ -204,6 +204,30 @@ section[id], #formacao { scroll-margin-top: 96px; }
   background: #0f1729;
   border-bottom: 1px solid var(--border);
 }
+/* Additional Slimekeepers gameplay region preview. */
+.slimekeepers-extra-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+  padding: 8px;
+  margin-top: 15px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(255,255,255,.035);
+}
+.slimekeepers-extra-preview .preview-trigger {
+  flex: 0 0 min(42%, 132px);
+  width: min(42%, 132px);
+  aspect-ratio: 16 / 9;
+  max-height: 90px;
+  border-radius: 7px;
+}
+.slimekeepers-extra-label { display: flex; flex-direction: column; min-width: 0; gap: 4px; line-height: 1.35; }
+.slimekeepers-extra-label strong { color: var(--text); font-size: .82rem; }
+.slimekeepers-extra-label small { color: var(--muted); font-size: .74rem; }
+
 .preview-trigger {
   display: grid;
   place-items: center;

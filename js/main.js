@@ -115,7 +115,7 @@ if (previewDialog && typeof previewDialog.showModal === 'function' &&
     activeTrigger = trigger;
 
     const projectTitle = card.querySelector('h3')?.textContent.trim() || 'Projeto';
-    const imageCaption = card.querySelector('.screen-note')?.textContent.trim() || 'Imagem original do projeto';
+    const imageCaption = trigger.dataset.caption || card.querySelector('.screen-note')?.textContent.trim() || 'Imagem original do projeto';
     previewTitle.textContent = projectTitle;
     previewDescription.textContent = imageCaption + '. A imagem é mostrada sem cortes.';
     previewImage.src = trigger.href;
