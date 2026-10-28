@@ -86,31 +86,47 @@ fs.mkdirSync(REPORT, { recursive: true });
   } finally {
     await browser.close();
   }
-  // Slimekeepers is a Godot desktop game, not a browser site.
-  // This is the actual MENU ART from its source repository, never a fake gameplay shot.
-  const slimeArt = {
-    slug: 'slimekeepers-menu',
-    source: 'HelioConde/Slime-Harvest: assets/ui/main_menu/vale_encantado.png',
-    kind: 'artwork',
-    ok: false,
-  };
-  try {
-    const url = 'https://raw.githubusercontent.com/HelioConde/Slime-Harvest/main/assets/ui/main_menu/vale_encantado.png';
-    const response = await fetch(url, { signal: AbortSignal.timeout(35000) });
-    if (!response.ok) throw Error('HTTP ' + response.status);
-    const bytes = Buffer.from(await response.arrayBuffer());
-    if (bytes.length < 5000 || bytes.length > 16 * 1024 * 1024 ||
-        bytes.subarray(0,8).toString('hex') !== '89504e470d0a1a0a') {
-      throw Error('PNG invalido ou muito grande');
+  // Slimekeepers is a desktop Godot game: copy actual gameplay screenshots
+  // already captured and versioned in its canonical game repository.
+  // Never synthesize gameplay or reuse menu artwork as if it were a screenshot.
+  const gameRepo = 'https://raw.githubusercontent.com/HelioConde/Slimekeepers-Lost-Valley/main/';
+  const gameShots = [
+    {
+      slug: 'slimekeepers-forest',
+      source: 'docs/world/clareira_spawn.png',
+      label: 'Clareira do Despertar: exploração na floresta',
+    },
+    {
+      slug: 'slimekeepers-valley',
+      source: 'docs/world/vale/vale_bridge.png',
+      label: 'Vale das Nascentes: região de pontes e água',
+    },
+  ];
+  for (const shot of gameShots) {
+    const shotUrl = gameRepo + shot.source;
+    const status = { slug: shot.slug, url: shotUrl, source: shot.source,
+      kind: 'gameplay', label: shot.label, ok: false };
+    try {
+      const response = await fetch(shotUrl, { signal: AbortSignal.timeout(35000) });
+      if (!response.ok) throw Error('HTTP ' + response.status);
+      const bytes = Buffer.from(await response.arrayBuffer());
+      if (bytes.length < 5000 || bytes.length > 16 * 1024 * 1024 ||
+          bytes.subarray(0,8).toString('hex') !== '89504e470d0a1a0a') {
+        throw Error('PNG invalido ou muito grande');
+      }
+      // Only replace the previous image once the new PNG has passed validation.
+      const dest = path.join(OUTPUT, shot.slug + '.png');
+      const temp = dest + '.tmp';
+      fs.writeFileSync(temp, bytes);
+      fs.renameSync(temp, dest);
+      status.ok = true;
+      status.image = 'img/projects/' + shot.slug + '.png';
+    } catch (e) {
+      status.error = String(e.message || e);
     }
-    fs.writeFileSync(path.join(OUTPUT, 'slimekeepers-menu.png'), bytes);
-    slimeArt.ok = true;
-    slimeArt.image = 'img/projects/slimekeepers-menu.png';
-  } catch (e) {
-    slimeArt.error = String(e.message || e);
+    results.push(status);
+    console.log(JSON.stringify(status));
   }
-  results.push(slimeArt);
-  console.log(JSON.stringify(slimeArt));
   fs.writeFileSync(path.join(REPORT,'capture-results.json'),
     JSON.stringify({generatedAt:new Date().toISOString(),results},null,2));
   const successes = results.filter(r=>r.ok);
